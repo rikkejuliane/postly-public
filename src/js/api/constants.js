@@ -25,3 +25,5 @@ export const API_SOCIAL_PROFILES_FOLLOW = `${API_SOCIAL}/profiles/<name>/follow`
 export const API_SOCIAL_PROFILES_UNFOLLOW = `${API_SOCIAL}/profiles/<name>/unfollow`;
 
 export const API_SOCIAL_PROFILES_SEARCH = `${API_SOCIAL}/profiles/search`;
+
+export const API_SOCIAL_POSTS_REACT = `${API_SOCIAL}/posts/<id>/react/<symbol>`;

@@ -1,3 +1,5 @@
+import { REGISTER_URL } from "../constants.js";
+
 /**
  * Registers a new user with the provided details.
  *
@@ -18,12 +20,62 @@
  * @param {boolean} [data.venueManager] - Indicates if the user is a venue manager (optional, used for holidaze).
  * @returns {Promise<Object>} A promise that resolves to the user's registration response.
  */
-export async function register({
+export async function registerUser({
   name,
   email,
   password,
   bio,
   avatar,
-  banner,
-  venueManager,
-}) {}
+  banner
+}) {
+  try {
+    // Send a POST request to the registration URL
+    const response = await fetch(REGISTER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        bio,
+        avatar,
+        banner
+      }),
+    });
+
+    // Parse the JSON response
+    const json = await response.json();
+    console.log("Registration response:", json);
+
+    // Handle non-OK responses with various error structures
+    if (!response.ok) {
+      let errorMessage = "Failed to register";
+
+      // Check for common error formats
+      if (json.errors && Array.isArray(json.errors) && json.errors[0]?.message) {
+        errorMessage = json.errors[0].message; // Array of errors
+      } else if (json.error && typeof json.error === "string") {
+        errorMessage = json.error; // Single error message as a string
+      } else if (json.message) {
+        errorMessage = json.message; // Single message field
+      } else {
+        console.error("Unexpected error structure:", json); // Log unexpected structures
+      }
+
+      // Throw the extracted error message
+      throw new Error(errorMessage);
+    }
+
+    // Return the JSON response if registration was successful
+    return json;
+
+  } catch (error) {
+    // Log and re-throw the error to handle it in the calling function
+    console.error("Error in registerUser:", error);
+    throw error;
+  }
+}
+
+

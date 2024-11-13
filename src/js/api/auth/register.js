@@ -1,4 +1,4 @@
-import { REGISTER_URL } from "../constants.js";
+import { API_AUTH_REGISTER } from "../constants.js";
 
 /**
  * Registers a new user with the provided details.
@@ -30,7 +30,7 @@ export async function registerUser({
 }) {
   try {
     // Send a POST request to the registration URL
-    const response = await fetch(REGISTER_URL, {
+    const response = await fetch(API_AUTH_REGISTER, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-export const API_KEY = "replace-with-your-key";
+export const API_KEY = "175b27d2-e7de-4e22-bffc-76b4d3897a54";
 
 export const API_BASE = "https://v2.api.noroff.dev";
 

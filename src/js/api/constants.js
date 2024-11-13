@@ -1,26 +1,27 @@
-// Base URL for the API
-const API_URL = "https://v2.api.noroff.dev/social/";
+export const API_BASE = "https://v2.api.noroff.dev";
 
-// Auth Endpoints
-export const REGISTER_URL = `${API_URL}auth/register`;
-export const LOGIN_URL = `${API_URL}auth/login`;
+export const API_AUTH = `${API_BASE}/auth`;
 
-// Posts Endpoints
-export const POSTS_URL = `${API_URL}posts`;
-export const SINGLE_POST_URL = (postId) => `${API_URL}posts/${postId}`;
-export const CREATE_POST_URL = `${API_URL}posts`;
-export const UPDATE_POST_URL = (postId) => `${API_URL}posts/${postId}`;
-export const DELETE_POST_URL = (postId) => `${API_URL}posts/${postId}`;
-export const LIKE_POST_URL = (postId) => `${API_URL}posts/${postId}/like`;
-export const UNLIKE_POST_URL = (postId) => `${API_URL}posts/${postId}/unlike`;
+export const API_AUTH_LOGIN = `${API_AUTH}/login`;
 
-// Profiles Endpoints
-export const PROFILE_URL = (userName) => `${API_URL}profiles/${userName}`;
-export const USER_POSTS_URL = (userName) =>
-  `${API_URL}profiles/${userName}/posts`;
-export const FOLLOW_USER_URL = (userName) =>
-  `${API_URL}profiles/${userName}/follow`;
-export const UNFOLLOW_USER_URL = (userName) =>
-  `${API_URL}profiles/${userName}/unfollow`;
-export const UPDATE_PROFILE_URL = (userName) =>
-  `${API_URL}profiles/${userName}`;
+export const API_AUTH_REGISTER = `${API_AUTH}/register`;
+
+export const API_AUTH_KEY = `${API_AUTH}/create-api-key`;
+
+export const API_SOCIAL = `${API_BASE}/social`;
+
+export const API_SOCIAL_POSTS = `${API_SOCIAL}/posts`;
+
+export const API_SOCIAL_POSTS_UPDATE = `${API_SOCIAL}/posts/<id>`; // For updating posts
+
+export const API_SOCIAL_PROFILES = `${API_SOCIAL}/profiles`;
+
+export const API_SOCIAL_PROFILES_SINGLE = `${API_SOCIAL}/profiles/<name>`; // For a single profile
+
+export const API_SOCIAL_PROFILES_UPDATE = `${API_SOCIAL}/profiles/<name>`; // For updating profiles
+
+export const API_SOCIAL_PROFILES_FOLLOW = `${API_SOCIAL}/profiles/<name>/follow`;
+
+export const API_SOCIAL_PROFILES_UNFOLLOW = `${API_SOCIAL}/profiles/<name>/unfollow`;
+
+export const API_SOCIAL_PROFILES_SEARCH = `${API_SOCIAL}/profiles/search`;

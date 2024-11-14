@@ -27,8 +27,10 @@ export async function login({ email, password }) {
       );
     }
 
-    // Store JWT token in localStorage
-    localStorage.setItem("token", json.token);
+    // Store the accessToken and username in localStorage
+    localStorage.setItem("accessToken", json.data.accessToken); // Correctly store the accessToken
+    localStorage.setItem("username", json.data.name); // Store the username (name)
+
     return json;
   } catch (error) {
     console.error("Error in login:", error);

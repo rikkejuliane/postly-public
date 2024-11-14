@@ -20,7 +20,7 @@ import { API_AUTH_REGISTER } from "../constants.js";
  * @param {boolean} [data.venueManager] - Indicates if the user is a venue manager (optional, used for holidaze).
  * @returns {Promise<Object>} A promise that resolves to the user's registration response.
  */
-export async function registerUser({
+export async function register({
   name,
   email,
   password,
@@ -73,7 +73,7 @@ export async function registerUser({
 
   } catch (error) {
     // Log and re-throw the error to handle it in the calling function
-    console.error("Error in registerUser:", error);
+    console.error("Error in register:", error);
     throw error;
   }
 }

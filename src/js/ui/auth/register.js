@@ -3,7 +3,7 @@
  * This function should pass data to the register function in api/auth and handle the response
  */
 
-import { registerUser } from "../../api/auth/register"; // Adjust import path as needed
+import { register } from "../../api/auth/register"; // Adjust import path as needed
 
 export async function onRegister(event) {
   event.preventDefault();  // Prevent the default form submission
@@ -22,7 +22,7 @@ export async function onRegister(event) {
     button.textContent = "Registering...";
 
     // Call the registerUser function with the collected data
-    const response = await registerUser({ name, email, password });
+    const response = await register({ name, email, password });
 
     // Handle the response (you can display a success message or redirect to login, for example)
     console.log("User registered successfully:", response);

@@ -1,4 +1,3 @@
-
 /**
  * This function should pass data to the register function in api/auth and handle the response
  */
@@ -31,7 +30,7 @@ export async function onRegister(event) {
 
     // Handle the response (you can display a success message or redirect to login, for example)
     console.log("User registered successfully:", response);
-    alert("Registration successful! Please check your email to verify your account.");
+    alert("Registration successful!");
 
     // Redirect to the login page after successful registration
     window.location.href = "/auth/login/";
@@ -48,4 +47,3 @@ export async function onRegister(event) {
     button.textContent = "Register";
   }
 }
-

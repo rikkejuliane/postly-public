@@ -26,11 +26,7 @@ export async function login({ email, password }) {
         json.message || "Login failed. Please check your credentials."
       );
     }
-
-    // Store the accessToken and username in localStorage
-    localStorage.setItem("accessToken", json.data.accessToken); // Correctly store the accessToken
-    localStorage.setItem("username", json.data.name); // Store the username (name)
-
+  
     return json;
   } catch (error) {
     console.error("Error in login:", error);

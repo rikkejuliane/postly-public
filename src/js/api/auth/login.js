@@ -8,6 +8,7 @@ import { API_AUTH_LOGIN } from "../constants.js";
  * @param {string} data.password - The user's password (required).
  * @returns {Promise<Object>} A promise that resolves to the user's login response.
  */
+
 export async function login({ email, password }) {
   try {
     const response = await fetch(API_AUTH_LOGIN, {
@@ -19,7 +20,6 @@ export async function login({ email, password }) {
     });
 
     const json = await response.json();
-    console.log("Login response:", json);
 
     if (!response.ok) {
       throw new Error(

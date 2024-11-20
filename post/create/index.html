@@ -1,16 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
+    <title>Create Post</title>
     <script type="module" src="/src/app.js"></script>
   </head>
   <body>
     <h1>Create Post</h1>
+    <a href="/">Home</a>
+    <form id="create-post" name="createPost">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="Enter the post title"
+        required
+      />
 
-    <form name="createPost">
-      <button>Create Post</button>
+      <label for="body">Body:</label>
+      <textarea
+        id="post-body"
+        name="body"
+        placeholder="Write your post content here"
+        required
+      ></textarea>
+
+      <label for="image">Image URL:</label>
+      <input
+        type="url"
+        id="image"
+        name="media"
+        placeholder="Enter media URL (optional)"
+      />
+
+      <label for="image-alt">Image Alt Text:</label>
+      <input
+        type="text"
+        id="image-alt"
+        name="alt"
+        placeholder="Describe the media (optional)"
+      />
+
+      <button type="submit">Create Post</button>
     </form>
   </body>
 </html>

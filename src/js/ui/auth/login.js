@@ -1,7 +1,18 @@
-/**
- * This function should pass data to the login function in api/auth and handle the response
- */
 import { login } from "../../api/auth/login.js"; // Adjust path as needed
+
+/**
+ * Handles the login process by passing user credentials to the login API 
+ * and managing the response.
+ *
+ * This function extracts user input from the login form, sends the data to 
+ * the `login` function, and processes the server's response. On success, 
+ * it stores the user's token and username in localStorage and redirects to the home page.
+ * On failure, it displays an error message to the user.
+ *
+ * @async
+ * @param {Event} event - The event object triggered by the form submission.
+ * @throws {Error} If the login request fails or the server returns an error.
+ */
 
 export async function onLogin(event) {
   event.preventDefault();

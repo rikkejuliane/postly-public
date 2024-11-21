@@ -6,5 +6,5 @@ authGuard();
 setLogoutListener();
 
 const userPostsContainer = document.querySelector("#user-posts-container");
-const username = "exampleUsername"; // Replace with dynamic username
+const username = "exampleUsername";
 renderPosts(userPostsContainer, readPostsByUser, { username });

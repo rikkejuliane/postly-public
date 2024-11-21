@@ -14,13 +14,13 @@ export const API_SOCIAL = `${API_BASE}/social`;
 
 export const API_SOCIAL_POSTS = `${API_SOCIAL}/posts`;
 
-export const API_SOCIAL_POSTS_UPDATE = `${API_SOCIAL}/posts/<id>`; // For updating posts
+export const API_SOCIAL_POSTS_UPDATE = `${API_SOCIAL}/posts/<id>`;
 
 export const API_SOCIAL_PROFILES = `${API_SOCIAL}/profiles`;
 
-export const API_SOCIAL_PROFILES_SINGLE = `${API_SOCIAL}/profiles/<name>`; // For a single profile
+export const API_SOCIAL_PROFILES_SINGLE = `${API_SOCIAL}/profiles/<name>`;
 
-export const API_SOCIAL_PROFILES_UPDATE = `${API_SOCIAL}/profiles/<name>`; // For updating profiles
+export const API_SOCIAL_PROFILES_UPDATE = `${API_SOCIAL}/profiles/<name>`;
 
 export const API_SOCIAL_PROFILES_FOLLOW = `${API_SOCIAL}/profiles/<name>/follow`;
 

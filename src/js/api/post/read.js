@@ -9,7 +9,7 @@ import { headers } from "../headers.js";
  * @throws {Error} If the API request fails.
  */
 export async function readPost(id) {
-  const url = `${API_SOCIAL_POSTS}/${id}?_author=true`; // Include author information
+  const url = `${API_SOCIAL_POSTS}/${id}?_author=true`;
   const options = {
     method: "GET",
     headers: headers(),
@@ -22,8 +22,8 @@ export async function readPost(id) {
       throw new Error(errorData.message || "Failed to fetch the post");
     }
     const result = await response.json();
-    console.log("ReadPost API Response:", result); // Log the full API response
-    return result.data; // Return the `data` field directly
+
+    return result.data;
   } catch (error) {
     console.error("Error fetching the post:", error);
     throw error;
@@ -44,7 +44,7 @@ export async function readPosts(limit = 12, page = 1, tag) {
   url.searchParams.append("limit", limit);
   url.searchParams.append("page", page);
   if (tag) url.searchParams.append("tag", tag);
-  url.searchParams.append("_author", "true"); // Include author information
+  url.searchParams.append("_author", "true");
 
   const options = {
     method: "GET",
@@ -75,12 +75,13 @@ export async function readPosts(limit = 12, page = 1, tag) {
  * @throws {Error} If the API request fails.
  */
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
-  // Corrected URL for fetching posts by user
-  const url = new URL(`https://v2.api.noroff.dev/social/profiles/${username}/posts`);
+  const url = new URL(
+    `https://v2.api.noroff.dev/social/profiles/${username}/posts`
+  );
   url.searchParams.append("limit", limit);
   url.searchParams.append("page", page);
   if (tag) url.searchParams.append("tag", tag);
-  url.searchParams.append("_author", "true"); // Include author information
+  url.searchParams.append("_author", "true");
 
   const options = {
     method: "GET",
@@ -118,20 +119,23 @@ export async function renderPosts(container, fetchFunction, options = {}) {
       options.tag,
       options.username
     );
-    const posts = Array.isArray(result.data) ? result.data : [result.data]; // Ensure posts is always an array
+    const posts = Array.isArray(result.data) ? result.data : [result.data];
 
     if (!posts || posts.length === 0) {
       container.innerHTML = "<p>No posts available yet.</p>";
       return;
     }
 
-    const postsHTML = posts.map((post) => {
-      const authorAvatar =
-        post.author?.avatar?.url || "/images/default-avatar.png"; // Fix for profile images
-      const authorName = post.author?.name || "Anonymous"; // Fetch username correctly
-      const postDate = post.created ? new Date(post.created).toLocaleDateString() : "Unknown date";
+    const postsHTML = posts
+      .map((post) => {
+        const authorAvatar =
+          post.author?.avatar?.url || "/images/default-avatar.png";
+        const authorName = post.author?.name || "Anonymous";
+        const postDate = post.created
+          ? new Date(post.created).toLocaleDateString()
+          : "Unknown date";
 
-      return `
+        return `
         <a href="/post/?id=${post.id}" class="post-card-link">
           <div class="post-card">
             <div class="post-card-header">
@@ -144,7 +148,9 @@ export async function renderPosts(container, fetchFunction, options = {}) {
             <h3 class="post-card-title">${post.title}</h3>
             ${
               post.media?.url
-                ? `<img src="${post.media.url}" alt="${post.media.alt || 'Media'}" class="post-card-image">`
+                ? `<img src="${post.media.url}" alt="${
+                    post.media.alt || "Media"
+                  }" class="post-card-image">`
                 : ""
             }
             <p class="post-card-body">${post.body || ""}</p>
@@ -155,7 +161,8 @@ export async function renderPosts(container, fetchFunction, options = {}) {
           </div>
         </a>
       `;
-    }).join("");
+      })
+      .join("");
 
     container.innerHTML = postsHTML;
   } catch (error) {

@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
-  </head>
-
-  <body>
-    <h1>Home</h1>
-
-    <div>
-    <a href="/profile/">My Profile</a>
-    <a href="/post/create/">Create Post</a>
-    <a href="/auth/login/">Login</a>
-    <a href="/auth/register/">Register</a>
-    <button id="logout-btn">Logout</button>
-  </div>
-
-    <section>
-      <div id="feed-container"></div>
-    </section>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Noroff FED2 JS2 CA</title>
+        <script type="module" src="/src/app.js"></script>
+    </head>
+    <body>
+        <h1>HOME</h1>
+        <section class="nav-container">
+            <div class="navbar">
+                <a class="nav-style" href="/profile/">My Profile</a>
+                <a class="nav-style" href="/post/create/">Create Post</a>
+                <a class="nav-style" href="/auth/login/">Login</a>
+                <a class="nav-style" href="/auth/register/">Register</a>
+                <button class="nav-style" id="logout-btn">Logout</button>
+            </div>
+        </section>
+        <section>
+            <div id="feed-container"></div>
+        </section>
+    </body>
 </html>

@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
-  </head>
-  <body>
-    <h1>Profile</h1>
-    <a href="/">Home</a>
-    <a href="/post/create/">Create Post</a>
-    <form name="updateProfile">
-      <button>Update Profile</button>
-    </form>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Noroff FED2 JS2 CA</title>
+        <script type="module" src="/src/app.js"></script>
+    </head>
+    <body>
+        <h1>Profile</h1>
+        <a href="/">Home</a>
+        <a href="/post/create/">Create Post</a>
+        <form name="updateProfile">
+            <button>Update Profile</button>
+            <button id="logout-btn">Logout</button>
+            <section>
+                <h2>Your Posts</h2>
+                <div id="profile-posts-container"></div>
+                <!-- User's posts will be rendered here -->
+            </section>
+        </form>
+    </body>
 </html>

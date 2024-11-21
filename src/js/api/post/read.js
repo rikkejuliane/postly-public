@@ -75,7 +75,8 @@ export async function readPosts(limit = 12, page = 1, tag) {
  * @throws {Error} If the API request fails.
  */
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
-  const url = new URL(`${API_SOCIAL_POSTS}?username=${username}`);
+  // Corrected URL for fetching posts by user
+  const url = new URL(`https://v2.api.noroff.dev/social/profiles/${username}/posts`);
   url.searchParams.append("limit", limit);
   url.searchParams.append("page", page);
   if (tag) url.searchParams.append("tag", tag);

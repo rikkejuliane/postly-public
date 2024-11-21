@@ -140,6 +140,7 @@ export async function renderPosts(container, fetchFunction, options = {}) {
                    class="post-card-avatar">
               <span class="post-card-username">${authorName}</span>
             </div>
+            <div class="post-card-content">
             <h3 class="post-card-title">${post.title}</h3>
             ${
               post.media?.url
@@ -149,6 +150,7 @@ export async function renderPosts(container, fetchFunction, options = {}) {
             <p class="post-card-body">${post.body || ""}</p>
             <div class="post-card-footer">
               <span class="post-card-date">${postDate}</span>
+            </div>
             </div>
           </div>
         </a>

@@ -11,10 +11,9 @@ body {
   width: 100%;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
   font-family: Arial, sans-serif;
-
 }
 
 .navbar {
@@ -26,36 +25,89 @@ h1 {
 }
 
 .nav-style {
-  text-decoration: none; /* Remove underline from links */
-  font-family: Arial, sans-serif; /* Clean sans-serif font */
-  font-size: 16px;
-  font-weight: 600; /* Set a default font size */
-  color: #333; /* Neutral text color */
-  background: none; /* No background by default */
-  border: none; /* No border by default */
-  cursor: pointer; /* Pointer cursor on hover */
-  padding: 0.5rem 1rem; /* Add padding for clickable areas */
-  border-radius: 4px; /* Rounded corners */
-  transition: background-color 0.2s ease, color 0.2s ease; /* Smooth hover effects */
-  padding: 50px 0;
-}
-
-/* Hover effects for <a> and <button> */
-.nav-style:hover {
-  color: #fff; /* Change text color on hover */
-  background-color: #007bff; /* Blue background on hover */
-}
-
-/* Active state for <a> and <button> */
-.nav-style:active {
-  background-color: #0056b3; /* Darker blue for active state */
-}
-
-a {
   text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin: 50px 0;
 }
 
-img {
-  width: 100px;
-  height: 100px;
+.nav-style:hover {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.feed-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-card-link {
+  text-decoration: none;
+  color: black;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(186, 186, 186);
+  border-radius: 8px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.post-card-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.post-card-avatar {
+  border-radius: 50%;
+  width: 20%;
+  height: auto;
+  object-fit: cover;
+}
+
+.post-card-username {
+  font-family: arial, sans-serif;
+  font-weight: 600;
+  
+}
+
+.post-card-content {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+.post-card-title {
+  font-family: arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.post-card-image {
+  width: 460px;
+  height: 460px;
+  object-fit: cover;
+}
+
+.post-card-body{
+font-family: arial, sans-serif;
+}
+
+.post-card-date {
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  color: #666666;
 }

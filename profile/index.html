@@ -8,15 +8,21 @@
     </head>
     <body>
         <h1>Profile</h1>
-        <a href="/">Home</a>
-        <a href="/post/create/">Create Post</a>
+        <section>
+          <!--- WELCOME BACK USERNAME, BANNER IMAGE, AVATAR AND BIO-->
+        </section>
+        <section class="nav-container">
+        <div class="navbar">
+        <a class="nav-style" href="/">Home</a>
+        <a class="nav-style" href="/post/create/">Create Post</a>
         <form name="updateProfile">
-            <button>Update Profile</button>
-            <button id="logout-btn">Logout</button>
-            <section>
-                <h2>Your Posts</h2>
+            <button class="nav-style">Update Profile</button>
+            <button class="nav-style" id="logout-btn">Logout</button>
+          </div>
+        </section>
+        <h2>Your Posts</h2>
+            <section class="feed-wrapper">
                 <div id="profile-posts-container"></div>
-                <!-- User's posts will be rendered here -->
             </section>
         </form>
     </body>

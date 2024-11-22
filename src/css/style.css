@@ -24,7 +24,7 @@ h1, h2 {
   gap: 5rem;
 }
 
-.nav-style {
+.nav-style, .load-more-btn {
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -39,9 +39,14 @@ h1, h2 {
   margin: 50px 0;
 }
 
-.nav-style:hover {
+.nav-style:hover, .load-more-btn:hover {
   color: #fff;
   background-color: #007bff;
+}
+
+.load-more-btn {
+  margin-top: 0px;
+  margin-bottom: 50px;
 }
 
 .feed-wrapper{

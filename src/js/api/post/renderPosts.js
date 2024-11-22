@@ -1,9 +1,22 @@
 /**
- * Renders a list of post cards into a container.
+ * Renders posts as HTML cards into a specified container.
  *
- * @param {HTMLElement} container - The container element where posts will be rendered.
- * @param {Array} posts - An array of post objects to render.
+ * @param {HTMLElement} container - The container element to render the posts into.
+ * @param {Array<Object>} posts - An array of post objects, each containing details like title, body, tags, media, and author information.
+ *
+ * @returns {void}
+ *
+ * @description
+ * - Converts each post object into a structured HTML card.
+ * - Displays post metadata, including:
+ *   - Author (avatar and name).
+ *   - Title and body content.
+ *   - Media (if available).
+ *   - Tags, displayed as a comma-separated list prefixed by "Tags:".
+ *   - Post creation date.
+ * - Inserts the generated HTML cards into the specified container.
  */
+
 export function renderPosts(container, posts) {
   const postsHTML = posts
     .map((post) => {
@@ -13,6 +26,13 @@ export function renderPosts(container, posts) {
       const postDate = post.created
         ? new Date(post.created).toLocaleDateString()
         : "Unknown date";
+
+      const tagsHTML = post.tags && post.tags.length
+        ? `<div class="post-card-tags">
+             <span class="post-card-tags-label">Tags:</span>
+             <span class="post-card-tag-list">${post.tags.join(", ")}</span>
+           </div>`
+        : "";
 
       return `
       <a href="/post/?id=${post.id}" class="post-card-link">
@@ -33,9 +53,10 @@ export function renderPosts(container, posts) {
                 : ""
             }
             <p class="post-card-body">${post.body || ""}</p>
-            <div class="post-card-footer">
-              <span class="post-card-date">${postDate}</span>
-            </div>
+          </div>
+          <div class="post-card-footer">
+            ${tagsHTML}
+            <span class="post-card-date">${postDate}</span>
           </div>
         </div>
       </a>
@@ -45,3 +66,5 @@ export function renderPosts(container, posts) {
 
   container.insertAdjacentHTML("beforeend", postsHTML);
 }
+
+

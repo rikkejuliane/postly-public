@@ -10,6 +10,7 @@ export async function onCreatePost(event) {
   const body = formData.get("body").trim();
   const mediaUrl = formData.get("media").trim();
   const mediaAlt = formData.get("alt").trim();
+  const tags = formData.get("tags").trim().split(",").map(tag => tag.trim()).filter(Boolean);
 
   if (!title || !body) {
     alert("Title and body are required fields.");
@@ -20,6 +21,7 @@ export async function onCreatePost(event) {
     title,
     body,
     media: mediaUrl ? { url: mediaUrl, alt: mediaAlt } : undefined,
+    tags,
   };
 
   try {
@@ -27,7 +29,12 @@ export async function onCreatePost(event) {
 
     if (response && response.data.id) {
       alert("Post created successfully!");
-      //window.location.href = "/";
+
+      form.reset();
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
     } else {
       throw new Error("Invalid response format");
     }

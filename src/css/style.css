@@ -111,6 +111,11 @@ h1, h2 {
 font-family: arial, sans-serif;
 }
 
+.post-card-tags{
+  font-family: arial, sans-serif;
+  font-size: 12px;
+}
+
 .post-card-date {
   font-family: arial, sans-serif;
   font-size: 12px;

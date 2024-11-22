@@ -35,15 +35,19 @@ export async function readPost(id) {
  *
  * @param {number} [limit=12] - The maximum number of posts to return.
  * @param {number} [page=1] - The page number for pagination.
- * @param {string} [tag] - An optional tag to filter posts.
- * @returns {Promise<Object>} An object containing an array of posts in the `data` field, and information in a `meta` field.
+ * @param {string|null} [tag=null] - An optional tag to filter posts (null for no filter).
+ * @returns {Promise<Object>} An object containing an array of posts in the `data` field and pagination metadata.
  * @throws {Error} If the API request fails.
  */
-export async function readPosts(limit = 12, page = 1, tag) {
+export async function readPosts(limit = 12, page = 1, tag = null) {
   const url = new URL(API_SOCIAL_POSTS);
   url.searchParams.append("limit", limit);
   url.searchParams.append("page", page);
-  if (tag) url.searchParams.append("tag", tag);
+
+  if (tag) {
+    url.searchParams.append("_tag", tag);
+  }
+
   url.searchParams.append("_author", "true");
 
   const options = {
@@ -53,10 +57,12 @@ export async function readPosts(limit = 12, page = 1, tag) {
 
   try {
     const response = await fetch(url, options);
+
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || "Failed to fetch posts");
     }
+
     return await response.json();
   } catch (error) {
     console.error("Error fetching posts:", error);

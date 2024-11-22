@@ -7,4 +7,6 @@ authGuard();
 setLogoutListener();
 
 const feedContainer = document.querySelector("#feed-container");
-loadPosts(feedContainer, readPosts, { limit: 12 });
+const tagFilter = document.querySelector("#tag-filter");
+
+loadPosts(feedContainer, readPosts, tagFilter);

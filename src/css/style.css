@@ -11,7 +11,8 @@ body {
   width: 100%;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
   font-family: Arial, sans-serif;
 }
@@ -24,7 +25,8 @@ h1, h2 {
   gap: 5rem;
 }
 
-.nav-style, .load-more-btn {
+.nav-style,
+.load-more-btn {
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -39,7 +41,8 @@ h1, h2 {
   margin: 50px 0;
 }
 
-.nav-style:hover, .load-more-btn:hover {
+.nav-style:hover,
+.load-more-btn:hover {
   color: #fff;
   background-color: #007bff;
 }
@@ -49,7 +52,34 @@ h1, h2 {
   margin-bottom: 50px;
 }
 
-.feed-wrapper{
+.feed-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#tag-filter,
+.tag-dropdown {
+  padding: 5px 5px;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.label-filter {
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.feed-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,13 +116,12 @@ h1, h2 {
 .post-card-username {
   font-family: arial, sans-serif;
   font-weight: 600;
-  
 }
 
 .post-card-content {
- display: flex;
- flex-direction: column;
- justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .post-card-title {
@@ -107,11 +136,11 @@ h1, h2 {
   object-fit: cover;
 }
 
-.post-card-body{
-font-family: arial, sans-serif;
+.post-card-body {
+  font-family: arial, sans-serif;
 }
 
-.post-card-tags{
+.post-card-tags {
   font-family: arial, sans-serif;
   font-size: 12px;
 }

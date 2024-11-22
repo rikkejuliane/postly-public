@@ -1,13 +1,22 @@
 /**
- * Renders a list of posts into a specified container.
+ * Renders posts as HTML cards into a specified container.
  *
- * @param {HTMLElement} container - The container where the posts will be rendered.
- * @param {Array<Object>} posts - An array of post objects to render.
+ * @param {HTMLElement} container - The container element to render the posts into.
+ * @param {Array<Object>} posts - An array of post objects, each containing details like title, body, tags, media, and author information.
+ *
+ * @returns {void}
  *
  * @description
- * - Iterates through the list of posts and generates individual post HTML using helper functions.
- * - Inserts the rendered HTML into the container.
+ * - Converts each post object into a structured HTML card.
+ * - Displays post metadata, including:
+ *   - Author (avatar and name).
+ *   - Title and body content.
+ *   - Media (if available).
+ *   - Tags, displayed as a comma-separated list prefixed by "Tags:".
+ *   - Post creation date.
+ * - Inserts the generated HTML cards into the specified container.
  */
+
 export function renderPosts(container, posts) {
   const postsHTML = posts
     .map((post) => {

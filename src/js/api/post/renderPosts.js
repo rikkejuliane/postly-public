@@ -1,8 +1,12 @@
 /**
- * Renders a list of post cards into a container.
+ * Renders a list of posts into a specified container.
  *
- * @param {HTMLElement} container - The container element where posts will be rendered.
- * @param {Array} posts - An array of post objects to render.
+ * @param {HTMLElement} container - The container where the posts will be rendered.
+ * @param {Array<Object>} posts - An array of post objects to render.
+ *
+ * @description
+ * - Iterates through the list of posts and generates individual post HTML using helper functions.
+ * - Inserts the rendered HTML into the container.
  */
 export function renderPosts(container, posts) {
   const postsHTML = posts
@@ -13,6 +17,13 @@ export function renderPosts(container, posts) {
       const postDate = post.created
         ? new Date(post.created).toLocaleDateString()
         : "Unknown date";
+
+      const tagsHTML = post.tags && post.tags.length
+        ? `<div class="post-card-tags">
+             <span class="post-card-tags-label">Tags:</span>
+             <span class="post-card-tag-list">${post.tags.join(", ")}</span>
+           </div>`
+        : "";
 
       return `
       <a href="/post/?id=${post.id}" class="post-card-link">
@@ -33,9 +44,10 @@ export function renderPosts(container, posts) {
                 : ""
             }
             <p class="post-card-body">${post.body || ""}</p>
-            <div class="post-card-footer">
-              <span class="post-card-date">${postDate}</span>
-            </div>
+          </div>
+          <div class="post-card-footer">
+            ${tagsHTML}
+            <span class="post-card-date">${postDate}</span>
           </div>
         </div>
       </a>
@@ -45,3 +57,5 @@ export function renderPosts(container, posts) {
 
   container.insertAdjacentHTML("beforeend", postsHTML);
 }
+
+

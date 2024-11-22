@@ -14,8 +14,4 @@ function setupFormListener() {
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", setupFormListener);
-} else {
-  setupFormListener();
-}
+setupFormListener();

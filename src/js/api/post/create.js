@@ -14,9 +14,6 @@ import { API_SOCIAL_POSTS } from "../constants.js";
  */
 
 export async function createPost({ title, body, media }) {
-  console.log("Token:", localStorage.getItem("token"));
-  console.log("API Endpoint:", API_SOCIAL_POSTS);
-
   const options = {
     method: "POST",
     headers: headers(),
@@ -24,10 +21,8 @@ export async function createPost({ title, body, media }) {
   };
 
   try {
-    console.log("Request headers:", options.headers);
     const response = await fetch(API_SOCIAL_POSTS, options);
 
-    console.log("Response status:", response.status);
     const data = await response.json();
 
     if (!response.ok) {
@@ -35,7 +30,6 @@ export async function createPost({ title, body, media }) {
       throw new Error(data.message || "Failed to create post");
     }
 
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Detailed API Error:", error);

@@ -26,7 +26,8 @@ h2 {
 }
 
 .nav-style,
-.load-more-btn {
+.load-more-btn,
+.create-post-btn {
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -42,7 +43,8 @@ h2 {
 }
 
 .nav-style:hover,
-.load-more-btn:hover {
+.load-more-btn:hover,
+.create-post-btn:hover {
   color: #fff;
   background-color: #007bff;
 }
@@ -62,7 +64,9 @@ h2 {
 
 #tag-filter,
 .tag-dropdown,
-#search-input {
+#search-input,
+input,
+textarea {
   padding: 5px 5px;
   font-size: 12px;
   font-family: Arial, sans-serif;
@@ -76,10 +80,20 @@ h2 {
 }
 
 .label-filter,
-.seach-label {
+.seach-label,
+label {
   font-family: Arial, sans-serif;
   font-weight: 600;
   font-size: 13px;
+}
+
+#create-post {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 50px 0;
 }
 
 .feed-wrapper {

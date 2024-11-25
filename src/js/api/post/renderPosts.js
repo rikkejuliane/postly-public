@@ -18,6 +18,7 @@
  */
 
 export function renderPosts(container, posts) {
+  const loggedInUser = localStorage.getItem("username");
   const postsHTML = posts
     .map((post) => {
       const authorAvatar =
@@ -27,44 +28,50 @@ export function renderPosts(container, posts) {
         ? new Date(post.created).toLocaleDateString()
         : "Unknown date";
 
-      const tagsHTML = post.tags && post.tags.length
-        ? `<div class="post-card-tags">
+      const tagsHTML =
+        post.tags && post.tags.length
+          ? `<div class="post-card-tags">
              <span class="post-card-tags-label">Tags:</span>
              <span class="post-card-tag-list">${post.tags.join(", ")}</span>
            </div>`
-        : "";
+          : "";
 
       return `
-      <a href="/post/?id=${post.id}" class="post-card-link">
+      <div class="post-card-wrapper">
         <div class="post-card">
-          <div class="post-card-header">
-            <img src="${authorAvatar}" 
-                 alt="${authorName}'s avatar" 
-                 class="post-card-avatar">
-            <span class="post-card-username">${authorName}</span>
-          </div>
-          <div class="post-card-content">
-            <h3 class="post-card-title">${post.title}</h3>
-            ${
-              post.media?.url
-                ? `<img src="${post.media.url}" alt="${
-                    post.media.alt || "Media"
-                  }" class="post-card-image">`
-                : ""
-            }
-            <p class="post-card-body">${post.body || ""}</p>
-          </div>
-          <div class="post-card-footer">
-            ${tagsHTML}
-            <span class="post-card-date">${postDate}</span>
-          </div>
+          <a href="/post/?id=${post.id}" class="post-card-link">
+            <div class="post-card-header">
+              <img src="${authorAvatar}" 
+                   alt="${authorName}'s avatar" 
+                   class="post-card-avatar">
+              <span class="post-card-username">${authorName}</span>
+            </div>
+            <div class="post-card-content">
+              <h3 class="post-card-title">${post.title}</h3>
+              ${
+                post.media?.url
+                  ? `<img src="${post.media.url}" alt="${
+                      post.media.alt || "Media"
+                    }" class="post-card-image">`
+                  : ""
+              }
+              <p class="post-card-body">${post.body || ""}</p>
+            </div>
+            <div class="post-card-footer">
+              ${tagsHTML}
+              <span class="post-card-date">${postDate}</span>
+            </div>
+          </a> 
+          ${
+            loggedInUser === authorName
+              ? `<button class="post-card-delete" data-id="${post.id}">Delete</button>`
+              : ""
+          }
         </div>
-      </a>
+      </div>
       `;
     })
     .join("");
 
   container.insertAdjacentHTML("beforeend", postsHTML);
 }
-
-

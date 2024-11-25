@@ -56,11 +56,13 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 90px;
   margin-bottom: 10px;
 }
 
 #tag-filter,
-.tag-dropdown {
+.tag-dropdown,
+#search-input {
   padding: 5px 5px;
   font-size: 12px;
   font-family: Arial, sans-serif;
@@ -73,7 +75,8 @@ h2 {
   transition: border-color 0.2s ease;
 }
 
-.label-filter {
+.label-filter,
+.seach-label {
   font-family: Arial, sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -152,6 +155,16 @@ h2 {
 }
 
 #back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000; /* Ensures it's above other elements */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -160,4 +173,8 @@ h2 {
 #back-to-top.show {
   opacity: 1;
   visibility: visible;
+}
+
+#back-to-top:hover {
+  background-color: #0056b3;
 }

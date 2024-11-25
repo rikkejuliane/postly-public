@@ -2,10 +2,13 @@ import { authGuard } from "../../utilities/authGuard.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
 import { loadPosts } from "../../ui/post/loadPosts.js";
 import { readPostsByUser } from "../../api/post/read.js";
-import { onDeletePost } from "../../ui/post/delete.js"; // Import the delete handler
+import { onDeletePost } from "../../ui/post/delete.js";
+import { initializeBackToTop } from "../../ui/global/backToTop.js";
+
 
 authGuard();
 setLogoutListener();
+initializeBackToTop();
 
 const profilePostsContainer = document.querySelector(
   "#profile-posts-container"

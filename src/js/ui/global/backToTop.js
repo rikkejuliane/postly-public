@@ -2,17 +2,17 @@ export function initializeBackToTop() {
   const button = document.createElement("button");
   button.id = "back-to-top";
   button.textContent = "↑ Back to Top";
-  button.style.display = "none"; // Initially hidden
+  button.classList.add("hidden"); // Start hidden
 
   // Append the button to the body
   document.body.appendChild(button);
 
   // Function to toggle button visibility based on scroll position
   function toggleVisibility() {
-    if (window.scrollY > 300) {
-      button.style.display = "block";
+    if (window.scrollY > 1500) {
+      button.classList.add("show"); // Show button after 1500px
     } else {
-      button.style.display = "none";
+      button.classList.remove("show"); // Hide button before 1500px
     }
   }
 
@@ -27,6 +27,6 @@ export function initializeBackToTop() {
     });
   });
 
-  // Public method to manually check visibility (useful during search)
-  toggleVisibility(); // Ensure visibility is checked on load
+  // Initial visibility check in case the page is already scrolled
+  toggleVisibility();
 }

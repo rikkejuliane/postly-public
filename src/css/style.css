@@ -28,6 +28,7 @@ h2 {
   align-items: center;
   align-content: center;
   gap: 5rem;
+  margin: 30px 0;
 }
 
 .nav-style,
@@ -44,7 +45,6 @@ h2 {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: background-color 0.2s ease, color 0.2s ease;
-  margin: 50px 0;
 }
 
 .nav-style:hover,
@@ -255,3 +255,89 @@ label {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Modal Follower Count */
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+#modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#modal-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.modal-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-list-item:last-child {
+  border-bottom: none;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes the avatar image round */
+  margin-right: 10px;
+  object-fit: cover;
+  border: 2px solid #ccc; /* Optional border around the avatar */
+}
+
+.modal-list-item span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+.profile-followers-section {
+  display: flex;
+  justify-content: center; 
+  gap: 10px; 
+  z-index: 2;
+  margin-top: 5px; 
+}
+
+

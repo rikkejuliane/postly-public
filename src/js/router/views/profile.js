@@ -6,7 +6,8 @@ import { onDeletePost } from "../../ui/post/delete.js";
 import { initializeBackToTop } from "../../ui/global/backToTop.js";
 import { fetchProfile } from "../../api/profile/readProfile.js";
 import { initializeUpdateProfileForm } from "../../ui/profile/updateProfileForm.js";
-import { initializeFollowToggle } from "../../ui/profile/followToggle.js"; // Import Follow/Unfollow logic
+import { initializeFollowToggle } from "../../ui/profile/followToggle.js";
+import { initializeProfileFollowersModal } from "../../ui/profile/profileFollowersModal.js";
 
 authGuard();
 setLogoutListener();
@@ -20,7 +21,6 @@ const bioDisplay = document.getElementById("profile-bio");
 const welcomeMessage = document.getElementById("welcome-message");
 const navContainer = document.querySelector(".nav-container");
 const notLoggedInNavbar = document.querySelector(".notLoggedInNavbar");
-const followButton = document.getElementById("follow-button");
 
 // Get the username from the URL or fallback to the logged-in user
 const urlParams = new URLSearchParams(window.location.search);
@@ -39,24 +39,29 @@ if (!username) {
       usernameDisplay.textContent = profileData.name || "Unknown User";
       bioDisplay.textContent = profileData.bio || "No bio available.";
 
+      // Handle logged-in user profile
       if (username === localStorage.getItem("username")) {
         welcomeMessage.textContent = "Welcome back!";
         navContainer.style.display = "block";
         notLoggedInNavbar.style.display = "none"; // Hide Follow and Home for logged-in user
 
-        // Initialize the update profile form for the logged-in user
+        // Initialize the update profile form
         initializeUpdateProfileForm(username);
       } else {
+        // Handle viewing another user's profile
         welcomeMessage.textContent = `${profileData.name || "User"}'s Profile`;
         navContainer.style.display = "none";
         notLoggedInNavbar.style.display = "flex"; // Show Follow and Home for other profiles
 
-        // Determine follow state and initialize the Follow/Unfollow button
+        // Initialize Follow/Unfollow button
         const isFollowing = profileData.followers?.some(
           (follower) => follower.name === localStorage.getItem("username")
         );
         initializeFollowToggle(username, isFollowing);
       }
+
+      // Initialize follower and following modal
+      initializeProfileFollowersModal(username, profileData);
 
       // Load posts for the current profile
       loadPosts(profilePostsContainer, async (limit, page, tag) =>

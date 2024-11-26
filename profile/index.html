@@ -8,22 +8,42 @@
     </head>
     <body>
         <h1>Profile</h1>
-        <section>
-          <!--- WELCOME BACK USERNAME, BANNER IMAGE, AVATAR AND BIO-->
+        <section id="profile-header">
+            <div id="banner-image"></div>
+            <!-- Banner as background -->
+            <div id="profile-info">
+                <h1 id="welcome-message">Welcome back!</h1>
+                <img id="profile-avatar" src="/images/default-avatar.png" alt="User Avatar">
+                <h2 id="profile-username">Username</h2>
+                <p id="profile-bio">This is the user's bio. Update your profile to add more details about yourself.</p>
+            </div>
         </section>
         <section class="nav-container">
-        <div class="navbar">
-        <a class="nav-style" href="/">Home</a>
-        <a class="nav-style" href="/post/create/">Create Post</a>
-        <form name="updateProfile">
-            <button class="nav-style">Update Profile</button>
-            <button class="nav-style" id="logout-btn">Logout</button>
-          </div>
+            <div class="navbar">
+                <a class="nav-style" href="/">Home</a>
+                <a class="nav-style" href="/post/create/">Create Post</a>
+                <button class="nav-style" id="update-profile-button">Update Profile</button>
+                <button class="nav-style" id="logout-btn">Logout</button>
+            </div>
         </section>
-        <h2>Your Posts</h2>
-            <section class="feed-wrapper">
-                <div id="profile-posts-container"></div>
-            </section>
-        </form>
-    </body>
+        <section id="update-profile-form" style="display: none;">
+            <form id="profile-update-form">
+                <label for="avatar-url">Avatar URL:</label>
+                <input type="url" id="avatar-url" placeholder="Enter new avatar URL">
+                <label for="banner-url">Banner URL:</label>
+                <input type="url" id="banner-url" placeholder="Enter new banner URL">
+                <label for="bio">Bio:</label>
+                <textarea id="bio" placeholder="Write a new bio..."></textarea>
+                <div class="form-buttons">
+                    <button type="button" id="save-profile" class="nav-style">Update</button>
+                    <button type="button" id="cancel-update" class="nav-style">Cancel</button>
+                </div>
+            </form>
+        </section>
+        <h2 id="your-posts-heading">Your Posts</h2>
+        <section class="feed-wrapper">
+            <div id="profile-posts-container"></div>
+        </section>
+    </form>
+</body>
 </html>

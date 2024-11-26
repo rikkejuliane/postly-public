@@ -39,13 +39,18 @@ export function renderPosts(container, posts) {
       return `
       <div class="post-card-wrapper">
         <div class="post-card">
-          <a href="/post/?id=${post.id}" class="post-card-link">
+          <!-- Profile Link Wrapping Avatar and Username -->
+          <a href="/profile/?username=${authorName}" class="profile-link">
             <div class="post-card-header">
               <img src="${authorAvatar}" 
                    alt="${authorName}'s avatar" 
                    class="post-card-avatar">
               <span class="post-card-username">${authorName}</span>
             </div>
+          </a>
+
+          <!-- Single Post Link Wrapping Only Post Content -->
+          <a href="/post/?id=${post.id}" class="post-card-link">
             <div class="post-card-content">
               <h3 class="post-card-title">${post.title}</h3>
               ${
@@ -57,11 +62,12 @@ export function renderPosts(container, posts) {
               }
               <p class="post-card-body">${post.body || ""}</p>
             </div>
-            <div class="post-card-footer">
-              ${tagsHTML}
-              <span class="post-card-date">${postDate}</span>
-            </div>
-          </a> 
+          </a>
+
+          <div class="post-card-footer">
+            ${tagsHTML}
+            <span class="post-card-date">${postDate}</span>
+          </div>
           ${
             loggedInUser === authorName
               ? `<button class="post-card-delete" data-id="${post.id}">Delete</button>`

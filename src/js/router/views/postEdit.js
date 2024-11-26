@@ -31,5 +31,4 @@ export default async function postEditView() {
   }
 }
 
-// Initialize the view
 postEditView();

@@ -131,8 +131,9 @@ label {
 
 .post-card-avatar {
   border-radius: 50%;
-  width: 20%;
-  height: auto;
+  width: 80px;
+  height: 80px;
+  border: 1px solid white;
   object-fit: cover;
 }
 

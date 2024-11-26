@@ -5,7 +5,8 @@ import { readPostsByUser } from "../../api/post/read.js";
 import { onDeletePost } from "../../ui/post/delete.js";
 import { initializeBackToTop } from "../../ui/global/backToTop.js";
 import { fetchProfile } from "../../api/profile/readProfile.js";
-import { initializeUpdateProfileForm } from "../../ui/profile/updateProfileForm.js"; // Import new update logic
+import { initializeUpdateProfileForm } from "../../ui/profile/updateProfileForm.js";
+import { initializeFollowToggle } from "../../ui/profile/followToggle.js"; // Import Follow/Unfollow logic
 
 authGuard();
 setLogoutListener();
@@ -18,6 +19,8 @@ const usernameDisplay = document.getElementById("profile-username");
 const bioDisplay = document.getElementById("profile-bio");
 const welcomeMessage = document.getElementById("welcome-message");
 const navContainer = document.querySelector(".nav-container");
+const notLoggedInNavbar = document.querySelector(".notLoggedInNavbar");
+const followButton = document.getElementById("follow-button");
 
 // Get the username from the URL or fallback to the logged-in user
 const urlParams = new URLSearchParams(window.location.search);
@@ -39,22 +42,20 @@ if (!username) {
       if (username === localStorage.getItem("username")) {
         welcomeMessage.textContent = "Welcome back!";
         navContainer.style.display = "block";
+        notLoggedInNavbar.style.display = "none"; // Hide Follow and Home for logged-in user
 
         // Initialize the update profile form for the logged-in user
         initializeUpdateProfileForm(username);
       } else {
         welcomeMessage.textContent = `${profileData.name || "User"}'s Profile`;
         navContainer.style.display = "none";
+        notLoggedInNavbar.style.display = "flex"; // Show Follow and Home for other profiles
 
-        const homeButton = document.createElement("a");
-        homeButton.href = "/";
-        homeButton.className = "nav-style";
-        homeButton.textContent = "Home";
-
-        const yourPostsHeading = document.getElementById("your-posts-heading");
-        if (yourPostsHeading) {
-          yourPostsHeading.parentElement.insertBefore(homeButton, yourPostsHeading);
-        }
+        // Determine follow state and initialize the Follow/Unfollow button
+        const isFollowing = profileData.followers?.some(
+          (follower) => follower.name === localStorage.getItem("username")
+        );
+        initializeFollowToggle(username, isFollowing);
       }
 
       // Load posts for the current profile

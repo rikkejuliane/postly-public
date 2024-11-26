@@ -22,9 +22,11 @@ export const API_SOCIAL_PROFILES_SINGLE = `${API_SOCIAL}/profiles/<name>`;
 
 export const API_SOCIAL_PROFILES_UPDATE = `${API_SOCIAL}/profiles/<name>`;
 
-export const API_SOCIAL_PROFILES_FOLLOW = `${API_SOCIAL}/profiles/<name>/follow`;
+export const API_SOCIAL_PROFILES_FOLLOW = (username) =>
+  `${API_SOCIAL}/profiles/${username}/follow`;
 
-export const API_SOCIAL_PROFILES_UNFOLLOW = `${API_SOCIAL}/profiles/<name>/unfollow`;
+export const API_SOCIAL_PROFILES_UNFOLLOW = (username) =>
+  `${API_SOCIAL}/profiles/${username}/unfollow`;
 
 export const API_SOCIAL_PROFILES_SEARCH = `${API_SOCIAL}/profiles/search`;
 

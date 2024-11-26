@@ -93,6 +93,7 @@ label {
 }
 
 #create-post,
+#edit-post,
 #profile-update-form {
   display: flex;
   flex-direction: column;
@@ -199,7 +200,6 @@ label {
   background-color: #0056b3;
 }
 
-
 /* Profile Header Section */
 #profile-header {
   position: relative;
@@ -254,4 +254,3 @@ label {
   margin-left: auto;
   margin-right: auto;
 }
-

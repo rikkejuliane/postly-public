@@ -68,7 +68,8 @@ export function renderPosts(container, posts) {
                                   ? `
                                   <img src="${post.media.url}" alt="${
                                       post.media.alt || "Media"
-                                    }" class="post-card-image">
+                                    }" class="post-card-image"
+                                    onerror="this.onerror=null;this.src='/images/default-avatar.png';" >
                               `
                                   : ""
                               }

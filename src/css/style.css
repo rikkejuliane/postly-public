@@ -153,6 +153,8 @@ label {
   font-family: arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 .post-card-image {
@@ -331,13 +333,10 @@ label {
   font-weight: 500;
 }
 
-
 .profile-followers-section {
   display: flex;
-  justify-content: center; 
-  gap: 10px; 
+  justify-content: center;
+  gap: 10px;
   z-index: 2;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
-
-

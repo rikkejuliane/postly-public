@@ -2,6 +2,7 @@ import { authGuard } from "../../utilities/authGuard.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
 import { loadPosts } from "../../ui/post/loadPosts.js";
 import { readPostsByUser } from "../../api/post/read.js";
+import { initializeReactionButtons } from "../../api/post/react.js"; // Import reaction initializer
 import { onDeletePost } from "../../ui/post/delete.js";
 import { initializeBackToTop } from "../../ui/global/backToTop.js";
 import { fetchProfile } from "../../api/profile/readProfile.js";
@@ -21,8 +22,6 @@ const bioDisplay = document.getElementById("profile-bio");
 const welcomeMessage = document.getElementById("welcome-message");
 const navContainer = document.querySelector(".nav-container");
 const notLoggedInNavbar = document.querySelector(".notLoggedInNavbar");
-
-// Get the username from the URL or fallback to the logged-in user
 const urlParams = new URLSearchParams(window.location.search);
 const username = urlParams.get("username") || localStorage.getItem("username");
 
@@ -43,7 +42,7 @@ if (!username) {
       if (username === localStorage.getItem("username")) {
         welcomeMessage.textContent = "Welcome back!";
         navContainer.style.display = "block";
-        notLoggedInNavbar.style.display = "none"; // Hide Follow and Home for logged-in user
+        notLoggedInNavbar.style.display = "none";
 
         // Initialize the update profile form
         initializeUpdateProfileForm(username);
@@ -51,7 +50,7 @@ if (!username) {
         // Handle viewing another user's profile
         welcomeMessage.textContent = `${profileData.name || "User"}'s Profile`;
         navContainer.style.display = "none";
-        notLoggedInNavbar.style.display = "flex"; // Show Follow and Home for other profiles
+        notLoggedInNavbar.style.display = "flex"; 
 
         // Initialize Follow/Unfollow button
         const isFollowing = profileData.followers?.some(
@@ -64,9 +63,12 @@ if (!username) {
       initializeProfileFollowersModal(username, profileData);
 
       // Load posts for the current profile
-      loadPosts(profilePostsContainer, async (limit, page, tag) =>
+      await loadPosts(profilePostsContainer, async (limit, page, tag) =>
         readPostsByUser(username, limit, page, tag)
       );
+
+      // Initialize reaction buttons after posts are loaded
+      initializeReactionButtons();
     } catch (error) {
       console.error("Error loading profile data:", error);
       profilePostsContainer.innerHTML = "<p>Error loading profile. Please try again later.</p>";
@@ -74,5 +76,4 @@ if (!username) {
   })();
 }
 
-// Attach delete post functionality
 profilePostsContainer.addEventListener("click", onDeletePost);

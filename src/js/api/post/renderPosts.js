@@ -14,13 +14,16 @@
  *   - Media (if available).
  *   - Tags, displayed as a comma-separated list prefixed by "Tags:".
  *   - Post creation date.
+ * - Includes a reaction button (heart) under the post metadata.
  * - Inserts the generated HTML cards into the specified container.
  */
 
 export function renderPosts(container, posts) {
   const loggedInUser = localStorage.getItem("username");
+
   const postsHTML = posts
     .map((post) => {
+      const postId = post.id;
       const authorAvatar =
         post.author?.avatar?.url || "/images/default-avatar.png";
       const authorName = post.author?.name || "Anonymous";
@@ -39,6 +42,15 @@ export function renderPosts(container, posts) {
           `
           : "";
 
+      const totalReactions =
+        post.reactions?.reduce((sum, reaction) => sum + reaction.count, 0) || 0;
+
+      const userHasReacted = post.reactions?.some(
+        (reaction) =>
+          reaction.symbol === "❤️" &&
+          reaction.reactors?.includes(loggedInUser)
+      );
+
       return `
               <div class="post-card-wrapper">
                   <div class="post-card">
@@ -48,7 +60,7 @@ export function renderPosts(container, posts) {
                               <span class="post-card-username">${authorName}</span>
                           </div>
                       </a>
-                      <a href="/post/?id=${post.id}" class="post-card-link">
+                      <a href="/post/?id=${postId}" class="post-card-link">
                           <div class="post-card-content">
                               <h3 class="post-card-title">${post.title}</h3>
                               ${
@@ -69,13 +81,22 @@ export function renderPosts(container, posts) {
                           ${
                             loggedInUser === authorName
                               ? `
-                              <div class="post-card-actions">
+                               <div class="post-card-actions">
                                  <button onclick="window.location.href='/post/edit/?id=${post.id}'" class="post-card-edit">Edit</button>
                                   <button class="post-card-delete" data-id="${post.id}">Delete</button>
                               </div>
                           `
                               : ""
                           }
+                          <div class="reaction-container">
+                              <button
+                                class="reaction-button ${userHasReacted ? "reacted" : ""}"
+                                data-post-id="${postId}"
+                                data-symbol="❤️"
+                              >
+                                ❤️ ${totalReactions}
+                              </button>
+                          </div>
                       </div>
                   </div>
               </div>
@@ -83,5 +104,7 @@ export function renderPosts(container, posts) {
     })
     .join("");
 
-  container.insertAdjacentHTML("beforeend", postsHTML);
+  container.innerHTML = postsHTML;
 }
+
+

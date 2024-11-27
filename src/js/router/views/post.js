@@ -1,11 +1,10 @@
 import { authGuard } from "../../utilities/authGuard.js";
-import { setLogoutListener } from "../../ui/global/logout.js";
 import { renderPosts } from "../../api/post/renderPosts.js";
 import { readPost } from "../../api/post/read.js";
 import { onDeletePost } from "../../ui/post/delete.js";
+import { initializeReactionButtons } from "../../api/post/react.js";
 
 authGuard();
-setLogoutListener();
 
 const postContainer = document.querySelector("#post-container");
 
@@ -17,6 +16,8 @@ if (postId) {
     try {
       const post = await readPost(postId);
       renderPosts(postContainer, [post]);
+
+      initializeReactionButtons();
     } catch (error) {
       console.error("Error fetching or rendering the post:", error);
       postContainer.innerHTML = `<p>Error loading the post: ${error.message}</p>`;

@@ -9,7 +9,7 @@ import { headers } from "../headers.js";
  * @throws {Error} If the API request fails.
  */
 export async function readPost(id) {
-  const url = `${API_SOCIAL_POSTS}/${id}?_author=true`;
+  const url = `${API_SOCIAL_POSTS}/${id}?_author=true&_comments=true&_reactions=true`;
   const options = {
     method: "GET",
     headers: headers(),
@@ -48,7 +48,9 @@ export async function readPosts(limit = 12, page = 1, tag = null) {
     url.searchParams.append("_tag", tag);
   }
 
+  // Include reactions and authors in the posts
   url.searchParams.append("_author", "true");
+  url.searchParams.append("_reactions", "true");
 
   const options = {
     method: "GET",
@@ -86,8 +88,14 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
   );
   url.searchParams.append("limit", limit);
   url.searchParams.append("page", page);
-  if (tag) url.searchParams.append("tag", tag);
+
+  if (tag) {
+    url.searchParams.append("_tag", tag);
+  }
+
+  // Include reactions in the response
   url.searchParams.append("_author", "true");
+  url.searchParams.append("_reactions", "true");
 
   const options = {
     method: "GET",
@@ -96,10 +104,12 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
 
   try {
     const response = await fetch(url, options);
+
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || "Failed to fetch user posts");
     }
+
     return await response.json();
   } catch (error) {
     console.error("Error fetching user posts:", error);

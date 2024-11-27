@@ -26,7 +26,7 @@ export async function login({ email, password }) {
         json.message || "Login failed. Please check your credentials."
       );
     }
-  
+
     return json;
   } catch (error) {
     console.error("Error in login:", error);

@@ -37,7 +37,6 @@ export async function register({ name, email, password, bio, avatar, banner }) {
     });
 
     const json = await response.json();
-    console.log("Registration response:", json);
 
     if (!response.ok) {
       let errorMessage = "Failed to register";

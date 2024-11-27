@@ -104,7 +104,7 @@ export function renderPosts(container, posts) {
     })
     .join("");
 
-  container.innerHTML = postsHTML;
+  container.insertAdjacentHTML("beforeend", postsHTML); // Append posts instead of replacing
 }
 
 

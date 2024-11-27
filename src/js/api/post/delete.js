@@ -27,7 +27,7 @@ export async function deletePost(id) {
 
     if (!response.ok) {
       const data = await response.json();
-      console.log("Error response:", data);
+
       throw new Error(data.message || "Failed to delete post");
     }
 

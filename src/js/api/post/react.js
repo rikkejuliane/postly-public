@@ -10,7 +10,7 @@ import { headers } from "../headers.js";
  * @throws {Error} - If the request fails.
  */
 export async function toggleReaction(postId, symbol) {
-  const url = `${API_SOCIAL_POSTS}/${postId}/react/${encodeURIComponent(symbol)}`;
+  const url = `${API_SOCIAL_POSTS}/${postId}/react/${(symbol)}`;
 
   try {
     const response = await fetch(url, {

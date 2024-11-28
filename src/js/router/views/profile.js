@@ -9,6 +9,7 @@ import { fetchProfile } from "../../api/profile/readProfile.js";
 import { initializeUpdateProfileForm } from "../../ui/profile/updateProfileForm.js";
 import { initializeFollowToggle } from "../../ui/profile/followToggle.js";
 import { initializeProfileFollowersModal } from "../../ui/profile/profileFollowersModal.js";
+import { initializeCommentButtons } from "../../api/post/comment.js"; // Import comment initializer
 
 authGuard();
 setLogoutListener();
@@ -69,6 +70,9 @@ if (!username) {
 
       // Initialize reaction buttons after posts are loaded
       initializeReactionButtons();
+
+      // Initialize comment buttons after posts are loaded
+      initializeCommentButtons();
     } catch (error) {
       console.error("Error loading profile data:", error);
       profilePostsContainer.innerHTML = "<p>Error loading profile. Please try again later.</p>";
@@ -76,4 +80,5 @@ if (!username) {
   })();
 }
 
+// Attach delete post functionality
 profilePostsContainer.addEventListener("click", onDeletePost);

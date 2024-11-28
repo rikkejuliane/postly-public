@@ -10,9 +10,9 @@ a {
 }
 
 .nav-container {
-  display: flex; /* Enables flexbox on the parent container */
-  justify-content: center; /* Centers the navbar horizontally */
-  align-items: center; /* Centers items vertically within the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -29,6 +29,22 @@ h2 {
   align-content: center;
   gap: 5rem;
   margin: 30px 0;
+}
+
+.login-register-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.login-register-links,
+#login-error {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .nav-style,
@@ -188,7 +204,7 @@ label {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 1000; /* Ensures it's above other elements */
+  z-index: 1000;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -259,7 +275,6 @@ label {
 }
 
 /* Modal Follower Count */
-/* Modal Styling */
 .modal {
   display: none;
   position: fixed;
@@ -269,14 +284,14 @@ label {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
   background-color: #fff;
   margin: 10% auto;
   padding: 20px;
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px;
   width: 80%;
   max-width: 500px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -322,10 +337,10 @@ label {
 .user-avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* Makes the avatar image round */
+  border-radius: 50%;
   margin-right: 10px;
   object-fit: cover;
-  border: 2px solid #ccc; /* Optional border around the avatar */
+  border: 2px solid #ccc;
 }
 
 .modal-list-item span {
@@ -341,8 +356,8 @@ label {
   margin-top: 5px;
 }
 
-/*Postcard-footer*/ 
-.reaction-container{
+/*Postcard-footer*/
+.reaction-container {
   margin: 10px 0;
 }
 
@@ -365,8 +380,8 @@ label {
 .comment-input-container {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Space between the textarea and button */
-  margin-top: 10px; /* Add some spacing above */
+  gap: 10px;
+  margin-top: 10px;
 }
 .textarea-comment {
   width: 100%;

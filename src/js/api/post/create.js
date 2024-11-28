@@ -18,7 +18,6 @@ export async function createPost({ title, body, media, tags }) {
     headers: headers(),
     body: JSON.stringify({ title, body, media, tags }),
   };
-
   try {
     const response = await fetch(API_SOCIAL_POSTS, options);
     const data = await response.json();
@@ -26,7 +25,6 @@ export async function createPost({ title, body, media, tags }) {
     if (!response.ok) {
       throw new Error(data.message || "Failed to create post");
     }
-
     return data;
   } catch (error) {
     console.error("Detailed API Error:", error);

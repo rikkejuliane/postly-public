@@ -17,14 +17,21 @@ import { login } from "../../api/auth/login.js"; // Adjust path as needed
 export async function onLogin(event) {
   event.preventDefault();
   const form = event.target;
-  const email = form.email.value;
-  const password = form.password.value;
+  const email = form.email.value.trim();
+  const password = form.password.value.trim();
   try {
     const apiResponse = await login({ email, password });
     localStorage.setItem("token", apiResponse.data.accessToken);
     localStorage.setItem("username", apiResponse.data.name);
     window.location.href = "/";
   } catch (error) {
-    alert(error.message);
+    const errorMessage =
+      error.message || "An error occurred. Please try again later.";
+    const errorElement = document.querySelector("#login-error");
+    if (errorElement) {
+      errorElement.textContent = errorMessage;
+      errorElement.style.color = "red";
+    }
+    console.error("Login error:", error);
   }
 }

@@ -1,6 +1,9 @@
-// This function controls which JavaScript file is loaded on which page
-// In order to add additional pages, you will need to implement them below
-// You may change the behaviour or approach of this file if you choose
+/**
+ * Dynamically imports and loads the appropriate JavaScript file based on the current pathname.
+ *
+ * @param {string} [pathname=window.location.pathname] - The current pathname to determine which file to load.
+ * @returns {Promise<void>} Resolves when the appropriate file is successfully imported.
+ */
 export default async function router(pathname = window.location.pathname) {
   switch (pathname) {
     case "/":

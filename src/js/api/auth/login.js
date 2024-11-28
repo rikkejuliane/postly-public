@@ -1,14 +1,16 @@
 import { API_AUTH_LOGIN } from "../constants.js";
 
 /**
- * Logs in a user with the provided credentials.
+ * Authenticates a user by sending their email and password to the login API.
  *
- * @param {Object} data - The login data.
- * @param {string} data.email - The user's email address (required).
- * @param {string} data.password - The user's password (required).
- * @returns {Promise<Object>} A promise that resolves to the user's login response.
+ * @async
+ * @function login
+ * @param {Object} credentials - The user's login credentials.
+ * @param {string} credentials.email - The user's email address.
+ * @param {string} credentials.password - The user's password.
+ * @returns {Promise<Object>} The JSON response from the API upon successful login.
+ * @throws {Error} If the login fails or the API returns an error response.
  */
-
 export async function login({ email, password }) {
   try {
     const response = await fetch(API_AUTH_LOGIN, {
@@ -18,15 +20,12 @@ export async function login({ email, password }) {
       },
       body: JSON.stringify({ email, password }),
     });
-
     const json = await response.json();
-
     if (!response.ok) {
       throw new Error(
         json.message || "Login failed. Please check your credentials."
       );
     }
-
     return json;
   } catch (error) {
     console.error("Error in login:", error);

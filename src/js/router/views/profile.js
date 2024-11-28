@@ -51,7 +51,7 @@ if (!username) {
         // Handle viewing another user's profile
         welcomeMessage.textContent = `${profileData.name || "User"}'s Profile`;
         navContainer.style.display = "none";
-        notLoggedInNavbar.style.display = "flex"; 
+        notLoggedInNavbar.style.display = "flex";
 
         // Initialize Follow/Unfollow button
         const isFollowing = profileData.followers?.some(
@@ -80,5 +80,4 @@ if (!username) {
   })();
 }
 
-// Attach delete post functionality
 profilePostsContainer.addEventListener("click", onDeletePost);

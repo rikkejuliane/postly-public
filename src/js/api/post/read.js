@@ -14,7 +14,6 @@ export async function readPost(id) {
     method: "GET",
     headers: headers(),
   };
-
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
@@ -22,7 +21,6 @@ export async function readPost(id) {
       throw new Error(errorData.message || "Failed to fetch the post");
     }
     const result = await response.json();
-
     return result.data;
   } catch (error) {
     console.error("Error fetching the post:", error);
@@ -31,13 +29,13 @@ export async function readPost(id) {
 }
 
 /**
- * Reads multiple posts with optional pagination and tagging.
+ * Fetches multiple posts with optional pagination and tag filtering.
  *
- * @param {number} [limit=12] - The maximum number of posts to return.
- * @param {number} [page=1] - The page number for pagination.
- * @param {string|null} [tag=null] - An optional tag to filter posts (null for no filter).
- * @returns {Promise<Object>} An object containing an array of posts in the `data` field and pagination metadata.
- * @throws {Error} If the API request fails.
+ * @param {number} [limit=12] - The maximum number of posts to fetch.
+ * @param {number} [page=1] - The page number for paginated results.
+ * @param {string|null} [tag=null] - A tag to filter posts by (optional).
+ * @returns {Promise<Object>} An object containing the posts (`data`) and pagination metadata.
+ * @throws {Error} If the API request fails or returns an error response.
  */
 export async function readPosts(limit = 12, page = 1, tag = null) {
   const url = new URL(API_SOCIAL_POSTS);
@@ -47,24 +45,18 @@ export async function readPosts(limit = 12, page = 1, tag = null) {
   if (tag) {
     url.searchParams.append("_tag", tag);
   }
-
-  // Include reactions and authors in the posts
   url.searchParams.append("_author", "true");
   url.searchParams.append("_reactions", "true");
-
   const options = {
     method: "GET",
     headers: headers(),
   };
-
   try {
     const response = await fetch(url, options);
-
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || "Failed to fetch posts");
     }
-
     return await response.json();
   } catch (error) {
     console.error("Error fetching posts:", error);
@@ -73,14 +65,14 @@ export async function readPosts(limit = 12, page = 1, tag = null) {
 }
 
 /**
- * Reads multiple posts by a specific user with optional pagination and tagging.
+ * Fetches posts created by a specific user with optional pagination and tag filtering.
  *
- * @param {string} username - The username of the user whose posts to read.
- * @param {number} [limit=12] - The maximum number of posts to return.
- * @param {number} [page=1] - The page number for pagination.
- * @param {string} [tag] - An optional tag to filter posts.
- * @returns {Promise<object>} Object with data and meta fields.
- * @throws {Error} If the API request fails.
+ * @param {string} username - The username of the user whose posts to fetch.
+ * @param {number} [limit=12] - The maximum number of posts to fetch.
+ * @param {number} [page=1] - The page number for paginated results.
+ * @param {string|null} [tag=null] - A tag to filter posts by (optional).
+ * @returns {Promise<Object>} An object containing the posts (`data`) and pagination metadata.
+ * @throws {Error} If the API request fails or returns an error response.
  */
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
   const url = new URL(
@@ -88,20 +80,15 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
   );
   url.searchParams.append("limit", limit);
   url.searchParams.append("page", page);
-
   if (tag) {
     url.searchParams.append("_tag", tag);
   }
-
-  // Include reactions in the response
   url.searchParams.append("_author", "true");
   url.searchParams.append("_reactions", "true");
-
   const options = {
     method: "GET",
     headers: headers(),
   };
-
   try {
     const response = await fetch(url, options);
 
@@ -109,12 +96,9 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
       const errorData = await response.json();
       throw new Error(errorData.message || "Failed to fetch user posts");
     }
-
     return await response.json();
   } catch (error) {
     console.error("Error fetching user posts:", error);
     throw error;
   }
 }
-
-

@@ -132,8 +132,8 @@ label {
 
 .post-card-avatar {
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border: 1px solid white;
   object-fit: cover;
 }
@@ -339,4 +339,41 @@ label {
   gap: 10px;
   z-index: 2;
   margin-top: 5px;
+}
+
+/*Postcard-footer*/ 
+.reaction-container{
+  margin: 10px 0;
+}
+
+.post-card-actions button,
+.reaction-container button,
+.post-comment-button,
+.delete-comment {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comment-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between the textarea and button */
+  margin-top: 10px; /* Add some spacing above */
+}
+.textarea-comment {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
 }

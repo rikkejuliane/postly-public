@@ -45,6 +45,8 @@ export function renderPosts(container, posts) {
       const totalReactions =
         post.reactions?.reduce((sum, reaction) => sum + reaction.count, 0) || 0;
 
+      const totalComments = post._count?.comments || 0;
+
       const userHasReacted = post.reactions?.some(
         (reaction) =>
           reaction.symbol === "❤️" &&
@@ -97,6 +99,16 @@ export function renderPosts(container, posts) {
                               >
                                 ❤️ ${totalReactions}
                               </button>
+                              <button
+                                class="comment-button"
+                                data-post-id="${postId}"
+                              >
+                                💬 ${totalComments}
+                              </button>
+                          </div>
+                          <!-- Comment Section Placeholder -->
+                          <div class="comment-section" id="comments-${postId}" style="display: none;">
+                              <!-- Comments will be dynamically loaded here -->
                           </div>
                       </div>
                   </div>
@@ -105,7 +117,7 @@ export function renderPosts(container, posts) {
     })
     .join("");
 
-  container.insertAdjacentHTML("beforeend", postsHTML); // Append posts instead of replacing
+  container.innerHTML = postsHTML;
 }
 
 

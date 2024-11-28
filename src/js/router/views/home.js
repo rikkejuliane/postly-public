@@ -6,6 +6,7 @@ import { initializeSearch } from "../../ui/post/search.js";
 import { initializeBackToTop } from "../../ui/global/backToTop.js";
 import { onDeletePost } from "../../ui/post/delete.js"; 
 import { initializeReactionButtons } from "../../api/post/react.js"; 
+import { initializeCommentButtons } from "../../api/post/comment.js"; // Import comment functionality
 
 authGuard();
 setLogoutListener();
@@ -15,7 +16,8 @@ const tagFilter = document.querySelector("#tag-filter");
 const searchInput = document.querySelector("#search-input");
 
 loadPosts(feedContainer, readPosts, tagFilter).then(() => {
-  initializeReactionButtons();
+  initializeReactionButtons(); // Initialize reactions
+  initializeCommentButtons(); // Initialize comments
 });
 
 initializeSearch(searchInput, feedContainer, tagFilter);

@@ -1,25 +1,28 @@
+/**
+ * Initializes a "Back to Top" button on the page.
+ *
+ * - Creates a button that scrolls the page to the top when clicked.
+ * - Dynamically shows or hides the button based on the user's scroll position.
+ * - Adds smooth scrolling behavior when the button is clicked.
+ * - Automatically checks visibility on page load in case of initial scroll position.
+ *
+ * @returns {void}
+ */
 export function initializeBackToTop() {
   const button = document.createElement("button");
   button.id = "back-to-top";
   button.textContent = "↑ Back to Top";
-  button.classList.add("hidden"); // Start hidden
-
-  // Append the button to the body
+  button.classList.add("hidden");
   document.body.appendChild(button);
 
-  // Function to toggle button visibility based on scroll position
   function toggleVisibility() {
     if (window.scrollY > 1500) {
-      button.classList.add("show"); // Show button after 1500px
+      button.classList.add("show");
     } else {
-      button.classList.remove("show"); // Hide button before 1500px
+      button.classList.remove("show");
     }
   }
-
-  // Add scroll event listener to toggle visibility
   window.addEventListener("scroll", toggleVisibility);
-
-  // Add click event to scroll back to top
   button.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
@@ -27,6 +30,5 @@ export function initializeBackToTop() {
     });
   });
 
-  // Initial visibility check in case the page is already scrolled
   toggleVisibility();
 }

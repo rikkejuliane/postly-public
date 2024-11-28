@@ -37,10 +37,8 @@ export async function register({ name, email, password, bio, avatar, banner }) {
     });
 
     const json = await response.json();
-
     if (!response.ok) {
       let errorMessage = "Failed to register";
-
       if (
         json.errors &&
         Array.isArray(json.errors) &&
@@ -56,7 +54,6 @@ export async function register({ name, email, password, bio, avatar, banner }) {
       }
       throw new Error(errorMessage);
     }
-
     return json;
   } catch (error) {
     console.error("Error in register:", error);

@@ -8,20 +8,14 @@ import { initializeCommentButtons } from "../../api/post/comment.js"; // Import 
 authGuard();
 
 const postContainer = document.querySelector("#post-container");
-
 const urlParams = new URLSearchParams(window.location.search);
 const postId = urlParams.get("id");
-
 if (postId) {
   (async function () {
     try {
       const post = await readPost(postId);
       renderPosts(postContainer, [post]);
-
-      // Initialize reaction buttons
       initializeReactionButtons();
-
-      // Initialize comment buttons
       initializeCommentButtons();
     } catch (error) {
       console.error("Error fetching or rendering the post:", error);
@@ -32,5 +26,4 @@ if (postId) {
   postContainer.innerHTML = "<p>Post ID is missing in the URL.</p>";
 }
 
-// Attach delete post functionality
 postContainer.addEventListener("click", onDeletePost);

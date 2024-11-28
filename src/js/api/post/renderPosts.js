@@ -2,22 +2,18 @@
  * Renders posts as HTML cards into a specified container.
  *
  * @param {HTMLElement} container - The container element to render the posts into.
- * @param {Array<Object>} posts - An array of post objects, each containing details like title, body, tags, media, and author information.
- *
+ * @param {Array<Object>} posts - An array of post objects containing post details.
  * @returns {void}
  *
  * @description
- * - Converts each post object into a structured HTML card.
- * - Displays post metadata, including:
- *   - Author (avatar and name).
- *   - Title and body content.
- *   - Media (if available).
- *   - Tags, displayed as a comma-separated list prefixed by "Tags:".
- *   - Post creation date.
- * - Includes a reaction button (heart) under the post metadata.
- * - Inserts the generated HTML cards into the specified container.
+ * - Converts post objects into structured HTML cards displaying:
+ *   - Author information (avatar and name).
+ *   - Post metadata (title, body, tags, reactions, and comments).
+ *   - Media content if available.
+ *   - Reaction and comment buttons with counts.
+ * - Includes action buttons (Edit/Delete) for the post author.
+ * - Appends the generated HTML to the specified container.
  */
-
 export function renderPosts(container, posts) {
   const loggedInUser = localStorage.getItem("username");
 
@@ -44,15 +40,11 @@ export function renderPosts(container, posts) {
 
       const totalReactions =
         post.reactions?.reduce((sum, reaction) => sum + reaction.count, 0) || 0;
-
       const totalComments = post._count?.comments || 0;
-
       const userHasReacted = post.reactions?.some(
         (reaction) =>
-          reaction.symbol === "❤️" &&
-          reaction.reactors?.includes(loggedInUser)
+          reaction.symbol === "❤️" && reaction.reactors?.includes(loggedInUser)
       );
-
       return `
               <div class="post-card-wrapper">
                   <div class="post-card">
@@ -93,7 +85,9 @@ export function renderPosts(container, posts) {
                           }
                           <div class="reaction-container">
                               <button
-                                class="reaction-button ${userHasReacted ? "reacted" : ""}"
+                                class="reaction-button ${
+                                  userHasReacted ? "reacted" : ""
+                                }"
                                 data-post-id="${postId}"
                                 data-symbol="❤️"
                               >
@@ -117,7 +111,5 @@ export function renderPosts(container, posts) {
     })
     .join("");
 
-  container.innerHTML = postsHTML;
+  container.insertAdjacentHTML("beforeend", postsHTML);
 }
-
-

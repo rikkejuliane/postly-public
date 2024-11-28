@@ -1,10 +1,11 @@
 /**
- * Logs out the user by clearing relevant user data from the browser's localStorage.
+ * Logs out the user by clearing authentication data from localStorage.
  *
- * This function removes the user's token and username from localStorage, effectively 
- * logging them out. Optionally, it can redirect the user to the login page if desired.
+ * - Removes the user's token and username from localStorage.
+ * - Can be extended to include additional logout-related behavior if needed.
+ *
+ * @returns {void}
  */
-
 export function onLogout() {
   localStorage.removeItem("token");
   localStorage.removeItem("username");

@@ -1,4 +1,5 @@
-import { login } from "../../api/auth/login.js"; // Adjust path as needed
+import { login } from "../../api/auth/login.js";
+import { createLoadingSpinner } from "../global/loadingSpinner.js";
 
 /**
  * Handles the login process by passing user credentials to the login API 
@@ -19,7 +20,14 @@ export async function onLogin(event) {
   const form = event.target;
   const email = form.email.value.trim();
   const password = form.password.value.trim();
+
+  const spinnerContainer = document.getElementById("spinner-container");
+  const spinner = createLoadingSpinner();
+
   try {
+    spinnerContainer.appendChild(spinner);
+    spinner.classList.remove("hidden");
+
     const apiResponse = await login({ email, password });
     localStorage.setItem("token", apiResponse.data.accessToken);
     localStorage.setItem("username", apiResponse.data.name);
@@ -33,5 +41,7 @@ export async function onLogin(event) {
       errorElement.style.color = "red";
     }
     console.error("Login error:", error);
+  } finally {
+    spinner.remove();
   }
 }

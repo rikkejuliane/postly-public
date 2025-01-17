@@ -1,4 +1,6 @@
-import { register } from "../../api/auth/register"; // Adjust import path as needed
+import { register } from "../../api/auth/register";
+import { createLoadingSpinner } from "../global/loadingSpinner.js";
+
 /**
  * Handles the user registration process.
  *
@@ -15,21 +17,27 @@ import { register } from "../../api/auth/register"; // Adjust import path as nee
 export async function onRegister(event) {
   event.preventDefault();
   const form = event.target;
-  const name = form.name.value;
-  const email = form.email.value;
-  const password = form.password.value;
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const password = form.password.value.trim();
   const button = form.querySelector("button");
+  const spinnerContainer = document.getElementById("spinner-container");
+  const spinner = createLoadingSpinner();
+
   try {
     button.disabled = true;
-    button.textContent = "Registering...";
+    spinnerContainer.appendChild(spinner);
+    spinner.classList.remove("hidden");
+
     const response = await register({ name, email, password });
+
     alert("Registration successful!");
     window.location.href = "/auth/login/";
   } catch (error) {
     console.error("Registration failed:", error);
     alert("Registration failed. Please try again.");
   } finally {
+    spinner.remove();
     button.disabled = false;
-    button.textContent = "Register";
   }
 }

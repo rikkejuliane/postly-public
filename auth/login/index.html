@@ -7,17 +7,19 @@
         <script type="module" src="/src/app.js"></script>
     </head>
     <body class="bg-creamwhite">
-        <header></header>
+        <header class="p-5">
+            <img src="/public/images/postly2.png" alt="logo" class="h-12">
+        </header>
         <main>
-            <section class="flex flex-row justify-center items-center h-screen gap-5">
+            <section class="flex md:flex-row flex-col justify-center items-center gap-5 mt-20">
                 <div>
-                    <img class="h-96" src="/public/images/undraw_online-posts_avfn.svg" alt="logo">
+                    <img class="h-96" src="/public/images/undraw_online-posts_avfn.svg" alt="Illustration of a girl and a smartphone">
                 </div>
                 <div class="w-80">
                     <h1 class="font-redHat font-black text-2xl">Login</h1>
                     <form name="login">
-                        <div class="flex flex-col justify-center font-montserrat text-sm font-bold">
-                            <label class=" pt-2 pb-1" for="email">Email</label>
+                        <div class="flex flex-col justify-center font-montserrat text-sm">
+                            <label class=" pt-2 pb-1 font-bold" for="email">Email</label>
                             <input
                                 class="px-3 py-1 rounded-lg text-gray-800"
                                 id="email"
@@ -25,7 +27,7 @@
                                 name="email"
                                 required
                             >
-                            <label class="pt-2 pb-1" for="password">Password</label>
+                            <label class="pt-2 pb-1 font-bold" for="password">Password</label>
                             <input
                                 class="px-3 py-1 rounded-lg text-gray-800"
                                 type="password"
@@ -34,7 +36,8 @@
                                 required
                             >
                         </div>
-                        <div id="login-error" class="text-red-500 mt-2 font-montserrat text-base cursor-pointer"></div>
+                        <div id="login-error" class="text-red-500 mt-2 font-montserrat text-xs cursor-pointer"></div>
+                        <div id="spinner-container" class="flex justify-center mt-4"></div>
                         <div class="flex flex-row justify-center gap-10">
                             <a class="font-medium" href="/auth/register/">Register</a>
                             <button class="text-darkgreen font-black">Login</button>

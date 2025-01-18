@@ -6,36 +6,46 @@
         <title>Noroff FED2 JS2 CA</title>
         <script type="module" src="/src/app.js"></script>
     </head>
-    <body>
-        <h1>HOME</h1>
-        <section class="nav-container">
-            <div class="navbar">
-                <a class="nav-style" href="/profile/">My Profile</a>
-                <a class="nav-style" href="/post/create/">Create Post</a>
-                <a class="nav-style" href="/auth/login/">Login</a>
-                <a class="nav-style" href="/auth/register/">Register</a>
-                <button class="nav-style" id="logout-btn">Logout</button>
-            </div>
-        </section>
-        <section class="feed-controls">
-          <div>
-            <label for="search-input" class="seach-label">Search:</label>
-            <input
-                type="text"
-                id="search-input"
-                placeholder="Search posts by title..."
-                class="search-bar"
-            >
-        </div>
+    <body class="bg-creamwhite">
+        <header class="p-5 flex flex-row justify-between items-center">
             <div>
-                <label for="tag-filter" class="label-filter">Choose community:</label>
-                <select id="tag-filter">
+                <img src="/public/images/postly2.png" alt="logo" class="h-12">
+            </div>
+            <div class="flex justify-center items-center gap-8 font-redHat font-medium text-base cursonr-pointer ">
+                <a class="hover:font-bold hover:text-darkgreen transition duration-100" href="/profile/">My Profile</a>
+                <a class="hover:font-bold hover:text-darkgreen transition duration-100" href="/post/create/">Create Post</a>
+                <button id="logout-btn">
+                    <svg
+                        class="hover:font-bold hover:text-darkgreen transition duration-100"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 24 24"
+                    >
+                        <path fill="currentColor" d="M5.616 20q-.691 0-1.153-.462T4 18.384V5.616q0-.691.463-1.153T5.616 4h6.403v1H5.616q-.231 0-.424.192T5 5.616v12.769q0 .23.192.423t.423.192h6.404v1zm10.846-4.461l-.702-.72l2.319-2.319H9.192v-1h8.887l-2.32-2.32l.702-.718L20 12z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <section class="flex flex-row justify-center items-center gap-6 mt-10 mb-2">
+            <div class="font-montserrat text-sm">
+                <label for="search-input" class="pt-2 pb-1 font-bold">Search:</label>
+                <input
+                    class="px-3 py-1 rounded-lg text-gray-800"
+                    type="text"
+                    id="search-input"
+                    placeholder="Search posts by title..."
+                >
+            </div>
+            <div class="font-montserrat text-sm">
+                <label for="tag-filter" class="pt-2 pb-1 font-bold">Choose community:</label>
+                <select id="tag-filter" class="px-3 py-1 rounded-lg text-gray-800">
                     <option value="all" selected>General</option>
                     <option value="PetPals">PetPals</option>
                 </select>
             </div>
         </section>
-        <section class="feed-wrapper">
+        <section class="flex flex-col justify-center items-center gap-6 mb-2">
             <div id="feed-container"></div>
         </section>
     </body>

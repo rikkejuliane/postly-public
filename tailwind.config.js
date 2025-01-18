@@ -10,7 +10,7 @@ export default {
       colors: {
         darkgreen: "#627056", // Dark Green
         creamwhite: "#F5F3EE", // Cream White
-        brown: "#5A4633", // Brown
+        browny: "#5A4633", // Brown
       },
     },
   },

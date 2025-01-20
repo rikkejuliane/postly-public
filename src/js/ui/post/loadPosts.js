@@ -55,7 +55,7 @@ export async function loadPosts(container, fetchFunction, dropdown, options = {}
     "font-bold",
     "py-2",
     "px-4",
-    "mb-12",
+    "mb-5",
     "rounded-lg",
     "shadow-md",
     "hover:bg-white",

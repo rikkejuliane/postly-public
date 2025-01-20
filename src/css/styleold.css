@@ -16,7 +16,7 @@
 
 
 
-.create-post-btn {
+/* .create-post-btn {
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -28,13 +28,13 @@
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: background-color 0.2s ease, color 0.2s ease;
-}
+} */
 
-.nav-style:hover,
+/* .nav-style:hover,
 .create-post-btn:hover {
   color: #fff;
   background-color: #007bff;
-}
+} */
 
 .feed-controls {
   display: flex;
@@ -44,8 +44,6 @@
   margin-bottom: 10px;
 }
 
-
-.tag-dropdown,
 textarea {
   padding: 5px 5px;
   font-size: 12px;
@@ -140,7 +138,7 @@ textarea {
   color: #666666;
 } */
 
-#back-to-top {
+/* #back-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -162,7 +160,7 @@ textarea {
 
 #back-to-top:hover {
   background-color: #0056b3;
-}
+} */
 
 /* Profile Header Section */
 #profile-header {
@@ -302,9 +300,9 @@ textarea {
 }
 
 /*Postcard-footer*/
-.reaction-container {
+/* .reaction-container {
   margin: 10px 0;
-}
+} */
 
 /* .post-card-actions button,
 .reaction-container button,
@@ -322,13 +320,13 @@ textarea {
   transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 } */
 
-.comment-input-container {
+/* .comment-input-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 10px;
-}
-.textarea-comment {
+} */
+/* .textarea-comment {
   width: 100%;
   padding: 10px;
   font-size: 14px;
@@ -336,4 +334,4 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: none;
-}
+} */

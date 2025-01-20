@@ -46,7 +46,7 @@ export function renderPosts(container, posts) {
           reaction.symbol === "❤️" && reaction.reactors?.includes(loggedInUser)
       );
       return `
-              <div class="max-w-[480px]">
+              <div class="max-w-[365px] sm:max-w-[480px]">
                   <div class="flex flex-col bg-white border-solid border-1 border-gray-400 rounded-lg shadow-md p-4 mb-4">
                       <a href="/profile/?username=${authorName}" class="profile-link">
                           <div class="flex items-center gap-5 pb-2">

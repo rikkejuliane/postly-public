@@ -196,19 +196,34 @@ function renderComments(commentSection, comments, postId) {
   const loggedInUser = localStorage.getItem("username");
 
   commentSection.innerHTML = `
+  <div class="flex flex-col gap-1 max-w-80">
     ${sortedComments
       .map(
         (comment) =>
-          `<p id="comment-${comment.id}">
+          `
+        <div id="comment-${comment.id}" class="flex gap-1"> 
+          <p>
             <strong>${comment.owner}</strong>: ${comment.body}
-            ${comment.owner === loggedInUser
-            ? `<button class="delete-comment" data-post-id="${postId}" data-comment-id="${comment.id}" data-owner="${comment.owner}">x</button>`
+          </p>
+          ${comment.owner === loggedInUser
+            ? `<button class="delete-comment font-bold text-red-600 hover:text-red-800 cursor-pointer" 
+                     data-post-id="${postId}" 
+                     data-comment-id="${comment.id}" 
+                     data-owner="${comment.owner}">x</button>`
             : ""
           }
-          </p>`
+        </div>`
       )
       .join("")}
-    <textarea id="new-comment-${postId}" placeholder="Write a comment..." class="textarea-comment"></textarea>
-    <button class="post-comment-button" data-post-id="${postId}">Post Comment</button>
-  `;
+    <div class="flex flex-col gap-1">
+      <textarea id="new-comment-${postId}" placeholder="Write a comment..." 
+        class="textarea-comment w-full border border-gray-300 rounded-lg p-2"></textarea>
+      <button class="post-comment-button text-darkgreen font-bold py-2 px-4 rounded-lg shadow-md cursor-pointer hover:bg-creamwhite" 
+        data-post-id="${postId}">
+        Post Comment
+      </button>
+    </div>
+  </div>
+`;
 }
+

@@ -50,7 +50,20 @@ export async function loadPosts(container, fetchFunction, dropdown, options = {}
 
   const loadMoreButton = document.querySelector(".load-more-btn") || document.createElement("button");
   loadMoreButton.textContent = "Load More";
-  loadMoreButton.classList.add("load-more-btn");
+  loadMoreButton.classList.add(
+    "text-darkgreen",
+    "font-bold",
+    "py-2",
+    "px-4",
+    "mb-12",
+    "rounded-lg",
+    "shadow-md",
+    "hover:bg-white",
+    "cursor-pointer",
+    "transition",
+    "duration-200"
+  );
+
   loadMoreButton.removeEventListener("click", fetchAndRender);
   loadMoreButton.addEventListener("click", fetchAndRender);
   if (!container.nextElementSibling?.classList.contains("load-more-btn")) {

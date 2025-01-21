@@ -60,7 +60,7 @@ export function renderPosts(container, posts) {
                               ${post.media?.url
           ? `
                                   <img src="${post.media.url}" alt="${post.media.alt || "Media"
-          }" class="h-[460px] w-[460px] object-cover"
+          }" class="h-[355px] w-[355px] object-cover sm:h-[460px] sm:w-[460px]"
                                     onerror="this.onerror=null;this.src='/images/default-avatar.png';" >
                               `
           : ""

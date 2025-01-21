@@ -123,7 +123,7 @@ export function initializeCommentButtons() {
         const newCommentHTML = `
           <p id="comment-${newComment.id}">
             <strong>${newComment.owner}</strong>: ${newComment.body}
-            <button class="delete-comment" data-post-id="${postId}" data-comment-id="${newComment.id}" data-owner="${newComment.owner}">x</button>
+            <button class="delete-comment font-bold text-red-600 hover:text-red-800 cursor-pointer" data-post-id="${postId}" data-comment-id="${newComment.id}" data-owner="${newComment.owner}">x</button>
           </p>
         `;
 

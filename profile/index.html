@@ -35,17 +35,21 @@
             </div>
         </header>
         <main>
-            <section id="profile-header" class="relative flex flex-col items-center w-full">
+            <section id="profile-header" class="relative flex flex-col items-center justify-center w-full">
                 <div id="banner-image" class="w-full h-80 bg-cover bg-center">
                     <div id="profile-info" class="text-center text-black p-5">
                         <h1 id="welcome-message" class="text-3xl font-bold font-redHat">Welcome back!</h1>
-                        <img class="w-28 h-28 rounded-full border-2 border-white my-[10px] mx-auto" id="profile-avatar" src="/images/default-avatar.png" alt="User Avatar">
+                        <img
+                            class="w-28 h-28 rounded-full border-2 border-white my-[10px] mx-auto"
+                            id="profile-avatar"
+                            src="/images/default-avatar.png"
+                            alt="User Avatar"
+                        >
                         <h2 id="profile-username" class="text-2xl font-bold font-redHat">Username</h2>
-                        <p id="profile-bio" class="text-base font-montserrat max-w-xl">This is the user's bio.</p>
+                        <p id="profile-bio" class="text-base font-montserrat">This is the user's bio.</p>
                         <div class="flex gap-5 justify-center">
                             <button id="followers-count" class="font-montserrat font-semibold">0 followers</button>
                             <button id="following-count" class="font-montserrat font-semibold">0 following</button>
-                           
                             <div id="followers-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40" style="display: none;">
                                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg w-11/12 max-w-lg p-6 shadow-lg">
                                     <span class="close-modal absolute top-3 right-3 text-gray-500 text-2xl font-bold hover:text-black focus:outline-none close-modal">&times;</span>
@@ -63,22 +67,37 @@
                     <button class="text-darkgreen font-bold py-2 px-4 my-5 rounded-lg shadow-md hover:bg-white cursor-pointer transition duration-200" id="update-profile-button">Update Profile</button>
                 </div>
             </section>
-            <section id="update-profile-form" style="display: none;">
-                <form id="profile-update-form">
-                    <label for="avatar-url">Avatar URL:</label>
-                    <input type="url" id="avatar-url" placeholder="Enter new avatar URL">
-                    <label for="banner-url">Banner URL:</label>
-                    <input type="url" id="banner-url" placeholder="Enter new banner URL">
-                    <label for="bio">Bio:</label>
-                    <textarea id="bio" placeholder="Write a new bio..." maxlength="300"></textarea>
-                    <div class="form-buttons">
-                        <button type="button" id="save-profile" class="nav-style">Update</button>
-                        <button type="button" id="cancel-update" class="nav-style">Cancel</button>
+            <section id="update-profile-form" style="display: none;" class="flex justify-center items-center">
+                <form id="profile-update-form" class="flex flex-col justify-center font-montserrat text-sm w-[365px] sm:w-[500px]">
+                    <label for="avatar-url" class="pt-2 pb-1 font-bold">Avatar URL:</label>
+                    <input
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        type="url"
+                        id="avatar-url"
+                        placeholder="Enter new avatar URL"
+                    >
+                    <label for="banner-url" class="pt-2 pb-1 font-bold">Banner URL:</label>
+                    <input
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        type="url"
+                        id="banner-url"
+                        placeholder="Enter new banner URL"
+                    >
+                    <label for="bio" class="pt-2 pb-1 font-bold">Bio:</label>
+                    <textarea
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        id="bio"
+                        placeholder="Write a new bio..."
+                        maxlength="300"
+                    ></textarea>
+                    <div class="flex gap-5 pt-2 pb-5">
+                        <button type="button" id="save-profile" class="font-redHat font-semibold text-base text-darkgreen cursor-pointer">Update</button>
+                        <button type="button" id="cancel-update" class="post-card-delete font-redHat font-semibold text-base text-red-600 cursor-pointer">Cancel</button>
                     </div>
                 </form>
             </section>
-            <div class="notLoggedInNavbar" style="display: none;">
-                <button id="follow-button" class="nav-style"></button>
+            <div class="notLoggedInNavbar flex flex-row justify-center items-center gap-5 font-redHat font-medium text-base cursonr-pointer" style="display: none;">
+                <button id="follow-button" class="text-darkgreen font-bold py-2 px-4 my-5 rounded-lg shadow-md hover:bg-white cursor-pointer transition duration-200"></button>
             </div>
             <section class="flex flex-col justify-center items-center  mb-2">
                 <div id="profile-posts-container"></div>
@@ -87,27 +106,32 @@
     </main>
     <footer class="flex flex-col justify-center items-center gap-1 p-5 text-sm text-gray-600 font-montserrat">
         <p>© 2025 All rights reserved.</p>
-        <p>Built by
+        <p>
+            Built by
             <a
                 class="font-bold cursor-pointer"
                 href="https://github.com/rikkejuliane"
                 target="_blank"
                 rel="noopener noreferrer"
-            >Rikke Juliane</a> &
+            >Rikke Juliane</a>
+            &
             <a
                 class="font-semibold cursor-pointer"
                 href="https://github.com/Niksubishi"
                 target="_blank"
                 rel="noopener noreferrer"
-            >Nikolas Bishop</a>.
+            >Nikolas Bishop</a>
+            .
         </p>
-        <p>Design by
+        <p>
+            Design by
             <a
                 class="font-bold cursor-pointer"
                 href="https://github.com/rikkejuliane"
                 target="_blank"
                 rel="noopener noreferrer"
-            >Rikke Juliane</a>.
+            >Rikke Juliane</a>
+            .
         </p>
     </footer>
 </body>

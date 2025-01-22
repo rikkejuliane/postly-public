@@ -36,7 +36,7 @@
   background-color: #007bff;
 } */
 
-.feed-controls {
+/* .feed-controls {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +67,7 @@ textarea {
   margin: 0 auto;
   padding: 50px 0;
 }
-
+ */
 
 /* .post-card-link {
   text-decoration: none;
@@ -201,14 +201,14 @@ textarea {
   margin: 10px 0;
 } */
 
-#profile-bio {
+/* #profile-bio {
   font-size: 1rem;
   font-weight: normal;
   margin: 10px 0;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 /* Modal Follower Count */
 /* .modal {

@@ -27,7 +27,7 @@ export async function initializeUpdateProfileForm(username) {
     bioInput.value = profileData.bio || "";
     updateProfileButton.addEventListener("click", () => {
       updateFormSection.style.display =
-        updateFormSection.style.display === "none" ? "block" : "none";
+        updateFormSection.style.display === "none" ? "flex" : "none";
     });
     updateButton.addEventListener("click", async () => {
       try {

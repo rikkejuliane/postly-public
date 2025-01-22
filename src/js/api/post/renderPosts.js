@@ -31,9 +31,7 @@ export function renderPosts(container, posts) {
           ? `
               <div class="font-montserrat text-xs font-bold pt-2">
                   <span>Tags:</span>
-                  <span>${post.tags.join(
-            ", "
-          )}</span>
+                  <span>${post.tags.join(", ")}</span>
               </div>
           `
           : "";
@@ -45,6 +43,7 @@ export function renderPosts(container, posts) {
         (reaction) =>
           reaction.symbol === "❤️" && reaction.reactors?.includes(loggedInUser)
       );
+
       return `
               <div class="max-w-[365px] sm:max-w-[480px]">
                   <div class="flex flex-col bg-white border-solid border-1 border-gray-400 rounded-lg shadow-md p-4 mb-4">
@@ -57,34 +56,33 @@ export function renderPosts(container, posts) {
                       <a href="/post/?id=${postId}" class="post-card-link">
                           <div class="flex flex-col gap-1">
                               <h3 class="font-redHat font-bold text-xl break-words overflow-hidden">${post.title}</h3>
-                              ${post.media?.url
-          ? `
-                                  <img src="${post.media.url}" alt="${post.media.alt || "Media"
-          }" class="h-[355px] w-[355px] object-cover sm:h-[460px] sm:w-[460px]"
-                                    onerror="this.onerror=null;this.src='/images/default-avatar.png';" >
+                              ${
+                                post.media?.url
+                                  ? `
+                                  <img src="${post.media.url}" alt="${post.media.alt || "Media"}" class="h-[355px] w-[355px] object-cover sm:h-[460px] sm:w-[460px]" onerror="this.onerror=null;this.src='/images/default-avatar.png';" >
                               `
-          : ""
-        }
+                                  : ""
+                              }
                               <p class="font-montserrat text-sm break-words overflow-hidden">${post.body || ""}</p>
                           </div>
                       </a>
                       ${tagsHTML}
-                          <span class="font-montserrat font-medium text-xs text-gray-600 pt-1">${postDate}</span>
-                      <div class="flex flex-row-reverse  justify-between item-center pt-2">
-                          
-                          ${loggedInUser === authorName
-          ? `
-                               <div class="flex gap-2">
-                                 <button onclick="window.location.href='/post/edit/?id=${post.id}'" class="font-redHat font-semibold text-base text-darkgreen cursor-pointer">Edit</button>
-                                  <button class="post-card-delete font-redHat font-semibold text-base text-red-600 cursor-pointer" data-id="${post.id}">Delete</button>
+                      <span class="font-montserrat font-medium text-xs text-gray-600 pt-1">${postDate}</span>
+                      <div class="mt-auto">
+                        <div class="flex justify-between items-center my-2">
+                          ${
+                            loggedInUser === authorName
+                              ? `
+                              <div class="flex gap-2">
+                                <button onclick="window.location.href='/post/edit/?id=${post.id}'" class="font-redHat font-semibold text-base text-darkgreen cursor-pointer">Edit</button>
+                                <button class="post-card-delete font-redHat font-semibold text-base text-red-600 cursor-pointer" data-id="${post.id}">Delete</button>
                               </div>
                           `
-          : ""
-        }
+                              : ""
+                          }
                           <div class="flex gap-2 font-redHat font-black">
                               <button
-                                class="reaction-button ${userHasReacted ? "reacted" : ""
-        }"
+                                class="reaction-button ${userHasReacted ? "reacted" : ""}"
                                 data-post-id="${postId}"
                                 data-symbol="❤️"
                               >
@@ -97,10 +95,10 @@ export function renderPosts(container, posts) {
                                 💬 ${totalComments}
                               </button>
                           </div>
-                          <!-- Comment Section Placeholder -->
-                          <div class="comment-section" id="comments-${postId}" style="display: none;">
-                              <!-- Comments will be dynamically loaded here -->
-                          </div>
+                        </div>
+                        <div class="comment-section hidden" id="comments-${postId}">
+                            <!-- Comments will be dynamically loaded here -->
+                        </div>
                       </div>
                   </div>
               </div>
@@ -110,3 +108,4 @@ export function renderPosts(container, posts) {
 
   container.insertAdjacentHTML("beforeend", postsHTML);
 }
+

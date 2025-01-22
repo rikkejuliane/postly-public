@@ -6,58 +6,109 @@
         <title>Noroff FED2 JS2 CA</title>
         <script type="module" src="/src/app.js"></script>
     </head>
-    <body>
-        <h1>Profile</h1>
-        <section id="profile-header" class="profile-header">
-            <div id="profile-info">
-                <h1 id="welcome-message">Welcome back!</h1>
-                <img id="profile-avatar" src="/images/default-avatar.png" alt="User Avatar">
-                <h2 id="profile-username">Username</h2>
-                <p id="profile-bio">This is the user's bio.</p>
+    <body class="bg-creamwhite">
+        <header class="p-5 flex flex-row justify-between items-center">
+            <div>
+                <a href="/">
+                    <img
+                        src="/public/images/postly2.png"
+                        alt="logo"
+                        class="h-12"
+                        width="auto"
+                        height="48"
+                    >
+                </a>
             </div>
-            <div id="banner-image"></div>
-        </section>
-        <section id="profile-followers-section" class="profile-followers-section">
-            <button id="followers-count" class="nav-style">0 followers</button>
-            <button id="following-count" class="nav-style">0 following</button>
-        </section>
-        <div id="followers-modal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <h3 id="modal-title"></h3>
-                <ul id="modal-list"></ul>
+            <div class="flex justify-center items-center gap-8 font-redHat font-medium text-base cursonr-pointer ">
+                <a class="hover:font-bold hover:text-darkgreen transition duration-100" href="/">Home</a>
+                <button id="logout-btn">
+                    <svg
+                        class="hover:font-bold hover:text-darkgreen transition duration-100"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 24 24"
+                    >
+                        <path fill="currentColor" d="M5.616 20q-.691 0-1.153-.462T4 18.384V5.616q0-.691.463-1.153T5.616 4h6.403v1H5.616q-.231 0-.424.192T5 5.616v12.769q0 .23.192.423t.423.192h6.404v1zm10.846-4.461l-.702-.72l2.319-2.319H9.192v-1h8.887l-2.32-2.32l.702-.718L20 12z"/>
+                    </svg>
+                </button>
             </div>
-        </div>
-        <section class="nav-container">
-            <div class="navbar">
-                <a class="nav-style" href="/">Home</a>
-                <a class="nav-style" href="/post/create/">Create Post</a>
-                <button class="nav-style" id="update-profile-button">Update Profile</button>
-                <button class="nav-style" id="logout-btn">Logout</button>
-            </div>
-        </section>
-        <section id="update-profile-form" style="display: none;">
-            <form id="profile-update-form">
-                <label for="avatar-url">Avatar URL:</label>
-                <input type="url" id="avatar-url" placeholder="Enter new avatar URL">
-                <label for="banner-url">Banner URL:</label>
-                <input type="url" id="banner-url" placeholder="Enter new banner URL">
-                <label for="bio">Bio:</label>
-                <textarea id="bio" placeholder="Write a new bio..." maxlength="300"></textarea>
-                <div class="form-buttons">
-                    <button type="button" id="save-profile" class="nav-style">Update</button>
-                    <button type="button" id="cancel-update" class="nav-style">Cancel</button>
+        </header>
+        <main>
+            <section id="profile-header" class="relative flex flex-col items-center w-full">
+                <div id="banner-image" class="w-full h-80 bg-cover bg-center">
+                    <div id="profile-info" class="text-center text-black p-5">
+                        <h1 id="welcome-message" class="text-3xl font-bold font-redHat">Welcome back!</h1>
+                        <img class="w-28 h-28 rounded-full border-2 border-white my-[10px] mx-auto" id="profile-avatar" src="/images/default-avatar.png" alt="User Avatar">
+                        <h2 id="profile-username" class="text-2xl font-bold font-redHat">Username</h2>
+                        <p id="profile-bio" class="text-base font-montserrat max-w-xl">This is the user's bio.</p>
+                        <div class="flex gap-5 justify-center">
+                            <button id="followers-count" class="font-montserrat font-semibold">0 followers</button>
+                            <button id="following-count" class="font-montserrat font-semibold">0 following</button>
+                           
+                            <div id="followers-modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40" style="display: none;">
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg w-11/12 max-w-lg p-6 shadow-lg">
+                                    <span class="close-modal absolute top-3 right-3 text-gray-500 text-2xl font-bold hover:text-black focus:outline-none close-modal">&times;</span>
+                                    <h3 id="modal-title" class="text-lg font-bold mb-4 text-center"></h3>
+                                    <ul id="modal-list" class="list-none space-y-4"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
-        </section>
-        <div class="notLoggedInNavbar" style="display: none;">
-            <a href="/" id="home-button" class="nav-style">Home</a>
-            <button id="follow-button" class="nav-style"></button>
-        </div>
-        <h2 id="your-posts-heading">Your Posts</h2>
-        <section class="feed-wrapper">
-            <div id="profile-posts-container"></div>
-        </section>
-    </form>
+            </section>
+            <section class="nav-container">
+                <div class="flex flex-row justify-center items-center gap-5 font-redHat font-medium text-base cursonr-pointer ">
+                    <a class="text-darkgreen font-bold py-2 px-4 my-5 rounded-lg shadow-md hover:bg-white cursor-pointer transition duration-200" href="/post/create/">Create Post</a>
+                    <button class="text-darkgreen font-bold py-2 px-4 my-5 rounded-lg shadow-md hover:bg-white cursor-pointer transition duration-200" id="update-profile-button">Update Profile</button>
+                </div>
+            </section>
+            <section id="update-profile-form" style="display: none;">
+                <form id="profile-update-form">
+                    <label for="avatar-url">Avatar URL:</label>
+                    <input type="url" id="avatar-url" placeholder="Enter new avatar URL">
+                    <label for="banner-url">Banner URL:</label>
+                    <input type="url" id="banner-url" placeholder="Enter new banner URL">
+                    <label for="bio">Bio:</label>
+                    <textarea id="bio" placeholder="Write a new bio..." maxlength="300"></textarea>
+                    <div class="form-buttons">
+                        <button type="button" id="save-profile" class="nav-style">Update</button>
+                        <button type="button" id="cancel-update" class="nav-style">Cancel</button>
+                    </div>
+                </form>
+            </section>
+            <div class="notLoggedInNavbar" style="display: none;">
+                <button id="follow-button" class="nav-style"></button>
+            </div>
+            <section class="flex flex-col justify-center items-center  mb-2">
+                <div id="profile-posts-container"></div>
+            </section>
+        </form>
+    </main>
+    <footer class="flex flex-col justify-center items-center gap-1 p-5 text-sm text-gray-600 font-montserrat">
+        <p>© 2025 All rights reserved.</p>
+        <p>Built by
+            <a
+                class="font-bold cursor-pointer"
+                href="https://github.com/rikkejuliane"
+                target="_blank"
+                rel="noopener noreferrer"
+            >Rikke Juliane</a> &
+            <a
+                class="font-semibold cursor-pointer"
+                href="https://github.com/Niksubishi"
+                target="_blank"
+                rel="noopener noreferrer"
+            >Nikolas Bishop</a>.
+        </p>
+        <p>Design by
+            <a
+                class="font-bold cursor-pointer"
+                href="https://github.com/rikkejuliane"
+                target="_blank"
+                rel="noopener noreferrer"
+            >Rikke Juliane</a>.
+        </p>
+    </footer>
 </body>
 </html>

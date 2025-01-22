@@ -63,12 +63,12 @@ export function initializeProfileFollowersModal(username, profileData) {
     }
     list.forEach((user) => {
       const listItem = document.createElement("li");
-      listItem.classList.add("modal-list-item");
+      listItem.classList.add("flex", "items-center", "gap-2", "border-b", "border-gray-200", "pb-2", "last:border-none");
       listItem.innerHTML = `
                 <img src="${
                   user.avatar?.url || "/images/default-avatar.png"
-                }" alt="${user.name}" class="user-avatar">
-                <span>${user.name}</span>
+                }" alt="${user.name}" class="w-10 h-10 rounded-full object-cover border-2 border-darkgreen">
+                <span class="font-medium text-black font-montserrat">${user.name}</span>
             `;
       modalList.appendChild(listItem);
     });

@@ -1,4 +1,3 @@
-import "./css/styleold.css";
 import "./css/style.css";
 import router from "./js/router";
 

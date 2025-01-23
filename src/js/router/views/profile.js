@@ -2,14 +2,15 @@ import { authGuard } from "../../utilities/authGuard.js";
 import { setLogoutListener } from "../../ui/global/logout.js";
 import { loadPosts } from "../../ui/post/loadPosts.js";
 import { readPostsByUser } from "../../api/post/read.js";
-import { initializeReactionButtons } from "../../api/post/react.js"; // Import reaction initializer
+import { initializeReactionButtons } from "../../api/post/react.js";
 import { onDeletePost } from "../../ui/post/delete.js";
 import { initializeBackToTop } from "../../ui/global/backToTop.js";
 import { fetchProfile } from "../../api/profile/readProfile.js";
 import { initializeUpdateProfileForm } from "../../ui/profile/updateProfileForm.js";
 import { initializeFollowToggle } from "../../ui/profile/followToggle.js";
 import { initializeProfileFollowersModal } from "../../ui/profile/profileFollowersModal.js";
-import { initializeCommentButtons } from "../../api/post/comment.js"; // Import comment initializer
+import { initializeCommentButtons } from "../../api/post/comment.js";
+import { createLoadingSpinner } from "../../ui/global/loadingSpinner.js";
 
 authGuard();
 setLogoutListener();
@@ -26,11 +27,15 @@ const notLoggedInNavbar = document.querySelector(".notLoggedInNavbar");
 const urlParams = new URLSearchParams(window.location.search);
 const username = urlParams.get("username") || localStorage.getItem("username");
 
+const spinner = createLoadingSpinner();
+profilePostsContainer.appendChild(spinner);
+
 if (!username) {
   profilePostsContainer.innerHTML = "<p>Error: User not found.</p>";
 } else {
   (async function () {
     try {
+      spinner.classList.remove("hidden"); // Show spinner
       const profileData = await fetchProfile(username);
 
       // Populate profile data
@@ -76,6 +81,8 @@ if (!username) {
     } catch (error) {
       console.error("Error loading profile data:", error);
       profilePostsContainer.innerHTML = "<p>Error loading profile. Please try again later.</p>";
+    } finally {
+      spinner.classList.add("hidden"); // Hide spinner after content loads
     }
   })();
 }

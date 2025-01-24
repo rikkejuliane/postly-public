@@ -5,12 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Register | Postly</title>
         <meta name="description" content="Create your Postly account. Join a vibrant community and start sharing your stories, thoughts, and moments.">
-        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico"/>
+        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
         <script type="module" src="/src/app.js"></script>
     </head>
-    <body class="bg-creamwhite">
+    <body class="bg-creamwhite max-w-[1440px] mx-auto">
         <header class="p-5">
-            <img src="/public/images/postly2.png" alt="logo" class="h-12">
+            <a href="/">
+                <img
+                    src="/public/images/postly2.png"
+                    alt="logo"
+                    class="h-12"
+                    width="auto"
+                    height="48"
+                >
+            </a>
         </header>
         <main>
             <section class="flex md:flex-row flex-col justify-center items-center gap-5 mt-20">
@@ -60,6 +68,17 @@
                     </div>
                 </form>
             </section>
+            <div id="modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 items-center justify-center">
+                <div class="bg-white rounded-lg w-11/12 max-w-md p-6 shadow-lg relative">
+                    <h3 id="modal-title" class="text-lg font-bold mb-4 text-center"></h3>
+                    <div id="modal-content" class="mb-4 text-sm text-gray-600 text-center"></div>
+                    <div class="flex justify-center gap-4">
+                        <button id="modal-confirm" class="bg-darkgreen text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700">Yes</button>
+                        <button id="modal-cancel" class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 hidden">No</button>
+                    </div>
+                    <button id="modal-close" class="absolute top-3 right-3 text-gray-500 text-xl font-bold hover:text-black">&times;</button>
+                </div>
+            </div>
         </main>
     </body>
 </html>

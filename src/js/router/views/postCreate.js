@@ -14,7 +14,7 @@ function setupFormListener() {
     spinnerContainer.className = "flex justify-center items-center";
     const spinner = createLoadingSpinner();
     spinnerContainer.appendChild(spinner);
-    form.appendChild(spinnerContainer); //
+    form.appendChild(spinnerContainer);
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();

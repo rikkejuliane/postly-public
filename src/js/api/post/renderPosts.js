@@ -36,8 +36,11 @@ export function renderPosts(container, posts) {
           `
           : "";
 
+      const heartReactions = post.reactions?.filter(
+        (reaction) => reaction.symbol === "❤️"
+      );
       const totalReactions =
-        post.reactions?.reduce((sum, reaction) => sum + reaction.count, 0) || 0;
+        heartReactions?.reduce((sum, reaction) => sum + reaction.count, 0) || 0;
       const totalComments = post._count?.comments || 0;
       const userHasReacted = post.reactions?.some(
         (reaction) =>
@@ -56,13 +59,12 @@ export function renderPosts(container, posts) {
                       <a href="/post/?id=${postId}" class="post-card-link">
                           <div class="flex flex-col gap-1">
                               <h3 class="font-redHat font-bold text-xl break-words overflow-hidden">${post.title}</h3>
-                              ${
-                                post.media?.url
-                                  ? `
+                              ${post.media?.url
+          ? `
                                   <img src="${post.media.url}" alt="${post.media.alt || "Media"}" class="h-[355px] w-[355px] object-cover sm:h-[460px] sm:w-[460px]" onerror="this.onerror=null;this.src='/images/default-avatar.png';" >
                               `
-                                  : ""
-                              }
+          : ""
+        }
                               <p class="font-montserrat text-sm break-words overflow-hidden">${post.body || ""}</p>
                           </div>
                       </a>
@@ -70,16 +72,15 @@ export function renderPosts(container, posts) {
                       <span class="font-montserrat font-medium text-xs text-gray-600 pt-1">${postDate}</span>
                       <div class="mt-auto">
                         <div class="flex justify-between items-center my-2">
-                          ${
-                            loggedInUser === authorName
-                              ? `
+                          ${loggedInUser === authorName
+          ? `
                               <div class="flex gap-2">
                                 <button onclick="window.location.href='/post/edit/?id=${post.id}'" class="font-redHat font-semibold text-base text-darkgreen cursor-pointer">Edit</button>
                                 <button class="post-card-delete font-redHat font-semibold text-base text-red-600 cursor-pointer" data-id="${post.id}">Delete</button>
                               </div>
                           `
-                              : ""
-                          }
+          : ""
+        }
                           <div class="flex gap-2 font-redHat font-black">
                               <button
                                 class="reaction-button ${userHasReacted ? "reacted" : ""}"

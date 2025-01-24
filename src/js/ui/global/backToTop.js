@@ -48,16 +48,14 @@ export function initializeBackToTop() {
     const footerTop = footerElement.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
 
-    // Show the button if scroll is past 1000px
     if (window.scrollY > 1000) {
       button.classList.remove("hidden", "opacity-0");
       button.classList.add("block", "opacity-100");
 
-      // Stop the button above the footer if it's visible
       if (footerTop < windowHeight) {
-        button.style.bottom = `${windowHeight - footerTop + 20}px`; // Adjust "20px" to control the gap above the footer
+        button.style.bottom = `${windowHeight - footerTop + 20}px`;
       } else {
-        button.style.bottom = "20px"; // Default distance from the bottom of the viewport
+        button.style.bottom = "20px";
       }
     } else {
       button.classList.remove("block", "opacity-100");
@@ -74,6 +72,5 @@ export function initializeBackToTop() {
 
   window.addEventListener("scroll", toggleVisibilityAndPosition);
 
-  // Initial check for visibility and position
   toggleVisibilityAndPosition();
 }

@@ -1,4 +1,5 @@
 import { createPost } from "../../api/post/create.js";
+import { openModal } from "../../ui/global/modalMessage.js";
 /**
  * Handles the creation of a new post.
  *
@@ -28,29 +29,44 @@ export async function onCreatePost(event) {
     .split(",")
     .map((tag) => tag.trim())
     .filter(Boolean);
+
   if (!title || !body) {
-    alert("Title and body are required fields.");
+    openModal({
+      title: "Error",
+      content: "Title and body are required fields.",
+      confirmText: "OK",
+    });
     return;
   }
+
   const postData = {
     title,
     body,
     media: mediaUrl ? { url: mediaUrl, alt: mediaAlt } : undefined,
     tags,
   };
+
   try {
     const response = await createPost(postData);
     if (response && response.data.id) {
-      alert("Post created successfully!");
-      form.reset();
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 2000);
+      openModal({
+        title: "Success",
+        content: "Post created successfully!",
+        confirmText: "OK",
+        onConfirm: () => {
+          form.reset();
+          window.location.href = "/";
+        },
+      });
     } else {
       throw new Error("Invalid response format");
     }
   } catch (error) {
     console.error("Error creating post:", error);
-    alert(`Error creating post: ${error.message}`);
+    openModal({
+      title: "Error",
+      content: `Error creating post: ${error.message}`,
+      confirmText: "OK",
+    });
   }
 }

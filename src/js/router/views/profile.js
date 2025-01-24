@@ -35,54 +35,43 @@ if (!username) {
 } else {
   (async function () {
     try {
-      spinner.classList.remove("hidden"); // Show spinner
+      spinner.classList.remove("hidden");
       const profileData = await fetchProfile(username);
 
-      // Populate profile data
       bannerImage.style.backgroundImage = `url('${profileData.banner?.url || "/images/default-banner.jpg"}')`;
       avatarImage.src = profileData.avatar?.url || "/images/default-avatar.png";
       usernameDisplay.textContent = profileData.name || "Unknown User";
       bioDisplay.textContent = profileData.bio || "No bio available.";
 
-      // Handle logged-in user profile
       if (username === localStorage.getItem("username")) {
         welcomeMessage.textContent = "Welcome back!";
         navContainer.style.display = "block";
         notLoggedInNavbar.style.display = "none";
-
-        // Initialize the update profile form
         initializeUpdateProfileForm(username);
       } else {
-        // Handle viewing another user's profile
         welcomeMessage.textContent = `${profileData.name || "User"}'s Profile`;
         navContainer.style.display = "none";
         notLoggedInNavbar.style.display = "flex";
-
-        // Initialize Follow/Unfollow button
         const isFollowing = profileData.followers?.some(
           (follower) => follower.name === localStorage.getItem("username")
         );
         initializeFollowToggle(username, isFollowing);
       }
 
-      // Initialize follower and following modal
       initializeProfileFollowersModal(username, profileData);
 
-      // Load posts for the current profile
       await loadPosts(profilePostsContainer, async (limit, page, tag) =>
         readPostsByUser(username, limit, page, tag)
       );
 
-      // Initialize reaction buttons after posts are loaded
       initializeReactionButtons();
 
-      // Initialize comment buttons after posts are loaded
       initializeCommentButtons();
     } catch (error) {
       console.error("Error loading profile data:", error);
       profilePostsContainer.innerHTML = "<p>Error loading profile. Please try again later.</p>";
     } finally {
-      spinner.classList.add("hidden"); // Hide spinner after content loads
+      spinner.classList.add("hidden");
     }
   })();
 }

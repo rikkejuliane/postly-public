@@ -5,15 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Post Details | Postly</title>
         <meta name="description" content="View the full post and engage with content on Postly. Read, comment, and connect with your community.">
-        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico"/>
+        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
         <script type="module" src="/src/app.js"></script>
     </head>
-    <body class="bg-creamwhite">
+    <body class="bg-creamwhite max-w-[1440px] mx-auto">
         <header class="p-5 flex flex-row justify-between items-center">
             <div>
                 <a href="/">
-                <img src="/public/images/postly2.png" alt="logo" class="h-12" width="auto" height="48">
-            </a>
+                    <img
+                        src="/public/images/postly2.png"
+                        alt="logo"
+                        class="h-12"
+                        width="auto"
+                        height="48"
+                    >
+                </a>
             </div>
             <div class="flex justify-center items-center gap-8 font-redHat font-medium text-base cursonr-pointer ">
                 <a class="hover:font-bold hover:text-darkgreen transition duration-100" href="/">Home</a>
@@ -33,16 +39,47 @@
         </header>
         <main>
             <div class="flex flex-col gap-4 sm:mb-0 mb-4">
-        <a class="self-start flex items-center justify-center ml-6 w-10 h-10 text-darkgreen text-2xl bg-white font-bold rounded-full shadow-md cursor-pointer" href="/">&#8592;</a>
-    </div>
-        <section class="flex flex-col justify-center items-center  mb-2">
-            <div id="post-container"></div>
-        </section>
+                <a class="self-start flex items-center justify-center ml-6 w-10 h-10 text-darkgreen text-2xl bg-white font-bold rounded-full shadow-md cursor-pointer" href="/">&#8592;</a>
+            </div>
+            <section class="flex flex-col justify-center items-center  mb-2">
+                <div id="post-container"></div>
+            </section>
+            <div id="modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 items-center justify-center">
+                <div class="bg-white rounded-lg w-11/12 max-w-md p-6 shadow-lg relative">
+                    <h3 id="modal-title" class="text-lg font-bold mb-4 text-center"></h3>
+                    <div id="modal-content" class="mb-4 text-sm text-gray-600 text-center"></div>
+                    <div class="flex justify-center gap-4">
+                        <button id="modal-confirm" class="bg-darkgreen text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700">Yes</button>
+                        <button id="modal-cancel" class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 hidden">No</button>
+                    </div>
+                    <button id="modal-close" class="absolute top-3 right-3 text-gray-500 text-xl font-bold hover:text-black">&times;</button>
+                </div>
+            </div>
         </main>
         <footer class="flex flex-col justify-center items-center gap-1 p-5 text-sm text-gray-600 font-montserrat">
             <p>© 2025 All rights reserved.</p>
-            <p>Built by <a class="font-bold cursor-pointer" href="https://github.com/rikkejuliane" target="_blank" rel="noopener noreferrer">Rikke Juliane</a> & <a class="font-semibold cursor-pointer" href="https://github.com/Niksubishi" target="_blank" rel="noopener noreferrer">Nikolas Bishop</a>.</p>
-            <p>Design by <a class="font-bold cursor-pointer" href="https://github.com/rikkejuliane" target="_blank" rel="noopener noreferrer">Rikke Juliane</a>.</p>
+            <p>Built by
+                <a
+                    class="font-bold cursor-pointer"
+                    href="https://github.com/rikkejuliane"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Rikke Juliane</a> &
+                <a
+                    class="font-semibold cursor-pointer"
+                    href="https://github.com/Niksubishi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Nikolas Bishop</a>.
+            </p>
+            <p>Design by
+                <a
+                    class="font-bold cursor-pointer"
+                    href="https://github.com/rikkejuliane"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Rikke Juliane</a>.
+            </p>
         </footer>
     </body>
 </html>

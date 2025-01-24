@@ -1,5 +1,6 @@
 import { register } from "../../api/auth/register";
 import { createLoadingSpinner } from "../global/loadingSpinner.js";
+import { openModal } from "../../ui/global/modalMessage.js";
 
 /**
  * Handles the user registration process.
@@ -29,13 +30,24 @@ export async function onRegister(event) {
     spinnerContainer.appendChild(spinner);
     spinner.classList.remove("hidden");
 
-    const response = await register({ name, email, password });
+    await register({ name, email, password });
 
-    alert("Registration successful!");
-    window.location.href = "/auth/login/";
+    openModal({
+      title: "Registration Successful",
+      content: "Your account has been created successfully. Redirecting to login...",
+      confirmText: "OK",
+      onConfirm: () => {
+        window.location.href = "/auth/login/";
+      },
+    });
   } catch (error) {
     console.error("Registration failed:", error);
-    alert("Registration failed. Please try again.");
+
+    openModal({
+      title: "Registration Failed",
+      content: `There was an issue with your registration. Please try again. Error: ${error.message}`,
+      confirmText: "OK",
+    });
   } finally {
     spinner.remove();
     button.disabled = false;

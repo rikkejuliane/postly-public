@@ -1,5 +1,6 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
+import { openModal } from "../../ui/global/modalMessage.js";
 
 /**
  * Fetch comments for a post.
@@ -68,12 +69,9 @@ export async function deleteComment(postId, commentId) {
       method: "DELETE",
       headers: headers(),
     });
-
     if (!response.ok) {
       throw new Error("Failed to delete comment.");
     }
-
-    alert("Comment deleted!");
   } catch (error) {
     console.error("Error deleting comment:", error);
     throw error;
@@ -112,7 +110,11 @@ export function initializeCommentButtons() {
       const body = textArea.value.trim();
 
       if (!body) {
-        alert("Comment cannot be empty.");
+        openModal({
+          title: "Invalid Input",
+          content: "Comment cannot be empty.",
+          confirmText: "OK",
+        });
         return;
       }
 
@@ -121,28 +123,37 @@ export function initializeCommentButtons() {
         const commentSection = document.getElementById(`comments-${postId}`);
 
         const newCommentHTML = `
-          <p id="comment-${newComment.id}">
-            <strong>${newComment.owner}</strong>: ${newComment.body}
-            <button class="delete-comment font-bold text-red-600 hover:text-red-800 cursor-pointer" data-post-id="${postId}" data-comment-id="${newComment.id}" data-owner="${newComment.owner}">x</button>
-          </p>
+          <div id="comment-${newComment.id}" class="flex gap-1">
+            <p>
+              <strong>${newComment.owner}</strong>: ${newComment.body}
+            </p>
+            <button class="delete-comment font-bold text-red-600 hover:text-red-800 cursor-pointer" 
+              data-post-id="${postId}" 
+              data-comment-id="${newComment.id}" 
+              data-owner="${newComment.owner}">
+              x
+            </button>
+          </div>
         `;
 
-        const textAreaElement = document.getElementById(
-          `new-comment-${postId}`
-        );
-        textAreaElement.insertAdjacentHTML("beforebegin", newCommentHTML);
+        commentSection.insertAdjacentHTML("afterbegin", newCommentHTML);
         textArea.value = "";
 
-        const commentButton = document.querySelector(
-          `.comment-button[data-post-id="${postId}"]`
-        );
-        const currentCount =
-          parseInt(commentButton.textContent.match(/\d+/)) || 0;
+        const commentButton = document.querySelector(`.comment-button[data-post-id="${postId}"]`);
+        const currentCount = parseInt(commentButton.textContent.match(/\d+/)) || 0;
         commentButton.innerHTML = `💬 ${currentCount + 1}`;
 
-        alert("Comment posted!");
+        openModal({
+          title: "Success",
+          content: "Comment posted successfully!",
+          confirmText: "OK",
+        });
       } catch (error) {
-        alert("Failed to post comment. Please try again.");
+        openModal({
+          title: "Error",
+          content: "Failed to post comment. Please try again.",
+          confirmText: "OK",
+        });
       }
     }
     if (event.target.classList.contains("delete-comment")) {
@@ -152,28 +163,43 @@ export function initializeCommentButtons() {
       const loggedInUser = localStorage.getItem("username");
 
       if (owner !== loggedInUser) {
-        alert("You can only delete your own comments.");
+        openModal({
+          title: "Unauthorized Action",
+          content: "You can only delete your own comments.",
+          confirmText: "OK",
+        });
         return;
       }
 
-      if (confirm("Are you sure you want to delete this comment?")) {
-        try {
-          await deleteComment(postId, commentId);
-          const commentElement = document.getElementById(
-            `comment-${commentId}`
-          );
-          commentElement.remove();
+      openModal({
+        title: "Delete Comment",
+        content: "Are you sure you want to delete this comment?",
+        confirmText: "Yes",
+        cancelText: "No",
+        onConfirm: async () => {
+          try {
+            await deleteComment(postId, commentId);
+            const commentElement = document.getElementById(`comment-${commentId}`);
+            if (commentElement) commentElement.remove();
 
-          const commentButton = document.querySelector(
-            `.comment-button[data-post-id="${postId}"]`
-          );
-          const currentCount =
-            parseInt(commentButton.textContent.match(/\d+/)) || 1;
-          commentButton.innerHTML = `💬 ${currentCount - 1}`;
-        } catch (error) {
-          alert("Failed to delete comment. Please try again.");
-        }
-      }
+            const commentButton = document.querySelector(`.comment-button[data-post-id="${postId}"]`);
+            const currentCount = parseInt(commentButton.textContent.match(/\d+/)) || 1;
+            commentButton.innerHTML = `💬 ${currentCount - 1}`;
+
+            openModal({
+              title: "Success",
+              content: "Comment deleted successfully!",
+              confirmText: "OK",
+            });
+          } catch (error) {
+            openModal({
+              title: "Error",
+              content: "Failed to delete comment. Please try again.",
+              confirmText: "OK",
+            });
+          }
+        },
+      });
     }
   });
 }

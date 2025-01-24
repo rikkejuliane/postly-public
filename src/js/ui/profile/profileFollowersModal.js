@@ -35,12 +35,10 @@ export function initializeProfileFollowersModal(username, profileData) {
     );
     return;
   }
-  followersCountButton.textContent = `${
-    profileData._count?.followers || 0
-  } followers`;
-  followingCountButton.textContent = `${
-    profileData._count?.following || 0
-  } following`;
+  followersCountButton.textContent = `${profileData._count?.followers || 0
+    } followers`;
+  followingCountButton.textContent = `${profileData._count?.following || 0
+    } following`;
 
   async function openModal(listType) {
     let list = [];
@@ -65,16 +63,14 @@ export function initializeProfileFollowersModal(username, profileData) {
       const listItem = document.createElement("li");
       listItem.classList.add("flex", "items-center", "gap-2", "border-b", "border-gray-200", "pb-2", "last:border-none");
       listItem.innerHTML = `
-                <img src="${
-                  user.avatar?.url || "/images/default-avatar.png"
-                }" alt="${user.name}" class="w-10 h-10 rounded-full object-cover border-2 border-darkgreen">
+                <img src="${user.avatar?.url || "/images/default-avatar.png"
+        }" alt="${user.name}" class="w-10 h-10 rounded-full object-cover border-2 border-darkgreen">
                 <span class="font-medium text-black font-montserrat">${user.name}</span>
             `;
       modalList.appendChild(listItem);
     });
-    modalTitle.textContent = `${
-      listType.charAt(0).toUpperCase() + listType.slice(1)
-    } List`;
+    modalTitle.textContent = `${listType.charAt(0).toUpperCase() + listType.slice(1)
+      } List`;
     modal.style.display = "block";
   }
   followersCountButton.addEventListener("click", () => openModal("followers"));

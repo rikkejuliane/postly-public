@@ -13,9 +13,8 @@ import { headers } from "../../api/headers.js"; // Import the headers function
  * @throws {Error} If the API request fails or returns an error.
  */
 async function handleFollowAction(username, isFollowing) {
-  const url = `${API_SOCIAL_PROFILES}/${username}/${
-    isFollowing ? "unfollow" : "follow"
-  }`;
+  const url = `${API_SOCIAL_PROFILES}/${username}/${isFollowing ? "unfollow" : "follow"
+    }`;
   const options = {
     method: "PUT",
     headers: headers(),
@@ -27,7 +26,7 @@ async function handleFollowAction(username, isFollowing) {
       console.error("Error response from API:", errorData);
       throw new Error(
         errorData.errors?.[0]?.message ||
-          `Failed to ${isFollowing ? "unfollow" : "follow"} the user.`
+        `Failed to ${isFollowing ? "unfollow" : "follow"} the user.`
       );
     }
     const result = await response.json();
@@ -38,8 +37,7 @@ async function handleFollowAction(username, isFollowing) {
   } catch (error) {
     console.error("Error during follow/unfollow:", error);
     alert(
-      `Could not ${
-        isFollowing ? "unfollow" : "follow"
+      `Could not ${isFollowing ? "unfollow" : "follow"
       } ${username}. Please try again.`
     );
   }

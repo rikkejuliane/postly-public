@@ -15,7 +15,7 @@ This project is a **social media application** built as part of the **JavaScript
 
 The project was collaboratively developed by [**Rikke Juliane Andreassen**](https://github.com/rikkejuliane) and [**Nikolas Bishop**](https://github.com/Niksubishi).
 
-[Link to live site🌸](https://js2-ca-rikkejuliane.netlify.app/)
+[Link to live site🌸](https://postly-rikkejuliane.netlify.app/)
 
 ---
 

@@ -15,6 +15,7 @@
 This project is a **social media application** built as part of the **JavaScript 2 Course Assignment**. Users can create, read, update, and delete (CRUD) their posts while enjoying additional features like commenting, reacting to posts, and following other users. The app leverages the **Noroff Social Media API** and focuses on functionality and error handling over visual styling. 
 
 The project was collaboratively developed by [**Rikke Juliane Andreassen**](https://github.com/rikkejuliane) and [**Nikolas Bishop**](https://github.com/Niksubishi).
+Styled by: [**Rikke Juliane Andreassen**](https://github.com/rikkejuliane).
 
 [Link to live site🌸](https://js2-ca-rikkejuliane.netlify.app/)
 
@@ -70,12 +71,11 @@ The project was collaboratively developed by [**Rikke Juliane Andreassen**](http
 ---
 
 ## **Tech Used 💻**  
-* **HTML, CSS, JavaScript**: Core languages for the project.  
+* **HTML, Tailwind and  JavaScript**: Core languages for the project.  
 * **Noroff Social Media API**: Backend API for all user and post interactions.  
 * **LocalStorage**: For storing JWT tokens and user data.  
 * **Vite**: Development environment and build tool.  
 * **Netlify**: Hosting and deployment platform.
-
 ---
 
 ## **Other 💡**    

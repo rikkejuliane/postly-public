@@ -78,6 +78,8 @@ The project was collaboratively developed by [**Rikke Juliane Andreassen**](http
 
 ---
 
-## **Other 💡**  
+## **Other 💡**    
+
 You must create a user with "@stud.noroff.no" to succesfully create a new user and log in!
+
 ---

@@ -6,7 +6,8 @@
 3. [Key Features](#key-features-✨)  
 4. [Installation](#installation-⚙️)  
 5. [Usage](#usage-🛠️)  
-6. [Tech Used](#tech-used-💻)   
+6. [Tech Used](#tech-used-💻)
+7. [Other](#other-💡)
 
 ---
 
@@ -75,4 +76,8 @@ The project was collaboratively developed by [**Rikke Juliane Andreassen**](http
 * **Vite**: Development environment and build tool.  
 * **Netlify**: Hosting and deployment platform.
 
+---
+
+## **Other 💡**  
+You must create a user with "@stud.noroff.no" to succesfully create a new user and log in!
 ---

@@ -3,45 +3,82 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Noroff FED2 JS2 CA</title>
+        <title>Register | Postly</title>
+        <meta name="description" content="Create your Postly account. Join a vibrant community and start sharing your stories, thoughts, and moments.">
+        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
         <script type="module" src="/src/app.js"></script>
     </head>
-    <body>
-        <h1>Register</h1>
-        <form name="register">
-            <div class="login-register-wrapper">
-                <label for="name">Name</label>
-                <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    required
-                    maxlength="20"
-                    pattern="^[\w]+$"
-                    title="Please enter a username using only letters and numbers"
+    <body class="bg-creamwhite max-w-[1440px] mx-auto">
+        <header class="p-5">
+            <a href="/">
+                <img
+                    src="/public/images/postly2.png"
+                    alt="logo"
+                    class="h-12"
+                    width="auto"
+                    height="48"
                 >
-                <label for="email">Email</label>
-                <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    required
-                    pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-                    title="Please enter a valid noroff.no or stud.noroff.no address"
-                >
-                <label for="password">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    required
-                    minlength="8"
-                >
+            </a>
+        </header>
+        <main>
+            <section class="flex md:flex-row flex-col justify-center items-center gap-5 mt-20">
+                <div>
+                    <img class="h-96" src="/public/images/undraw_favorite-post_5ylx.svg" alt="Illustration of a man with an smartphone">
+                </div>
+                <div class="w-80">
+                    <h1 class="font-redHat font-black text-2xl">Register</h1>
+                    <form name="register">
+                        <div class="flex flex-col justify-center font-montserrat text-sm">
+                            <label class=" pt-2 pb-1 font-bold" for="name">Username</label>
+                            <input
+                                class="px-3 py-1 rounded-lg text-gray-800"
+                                id="name"
+                                type="text"
+                                name="name"
+                                required
+                                maxlength="20"
+                                pattern="^[\w]+$"
+                                title="Please enter a username using only letters and numbers"
+                            >
+                            <label class=" pt-2 pb-1 font-bold" for="email">Email</label>
+                            <input
+                                class="px-3 py-1 rounded-lg text-gray-800"
+                                id="email"
+                                type="email"
+                                name="email"
+                                required
+                                pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+                                title="Please enter a valid noroff.no or stud.noroff.no address"
+                            >
+                            <label class=" pt-2 pb-1 font-bold" for="password">Password</label>
+                            <input
+                                class="px-3 py-1 rounded-lg text-gray-800"
+                                type="password"
+                                name="password"
+                                id="password"
+                                required
+                                minlength="8"
+                            >
+                        </div>
+                        <div id="spinner-container" class="flex justify-center mt-4"></div>
+                        <div class="flex flex-row justify-center gap-10">
+                            <a class="font-medium" href="/auth/login/">Login</a>
+                            <button class="text-darkgreen font-black">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <div id="modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 items-center justify-center">
+                <div class="bg-white rounded-lg w-11/12 max-w-md p-6 shadow-lg relative">
+                    <h3 id="modal-title" class="text-lg font-bold mb-4 text-center"></h3>
+                    <div id="modal-content" class="mb-4 text-sm text-gray-600 text-center"></div>
+                    <div class="flex justify-center gap-4">
+                        <button id="modal-confirm" class="bg-darkgreen text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700">Yes</button>
+                        <button id="modal-cancel" class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 hidden">No</button>
+                    </div>
+                    <button id="modal-close" class="absolute top-3 right-3 text-gray-500 text-xl font-bold hover:text-black">&times;</button>
+                </div>
             </div>
-            <div class="login-register-links">
-                <a href="/auth/login/">Login</a>
-                <button>Register</button>
-            </div>
-        </form>
+        </main>
     </body>
 </html>

@@ -27,7 +27,7 @@ export async function initializeUpdateProfileForm(username) {
     bioInput.value = profileData.bio || "";
     updateProfileButton.addEventListener("click", () => {
       updateFormSection.style.display =
-        updateFormSection.style.display === "none" ? "block" : "none";
+        updateFormSection.style.display === "none" ? "flex" : "none";
     });
     updateButton.addEventListener("click", async () => {
       try {
@@ -40,9 +40,8 @@ export async function initializeUpdateProfileForm(username) {
 
         document.getElementById("profile-avatar").src =
           updatedProfile.avatar?.url || "/images/default-avatar.png";
-        document.getElementById("banner-image").style.backgroundImage = `url('${
-          updatedProfile.banner?.url || "/images/default-banner.jpg"
-        }')`;
+        document.getElementById("banner-image").style.backgroundImage = `url('${updatedProfile.banner?.url || "/images/default-banner.jpg"
+          }')`;
         document.getElementById("profile-bio").textContent =
           updatedProfile.bio || "No bio available.";
 

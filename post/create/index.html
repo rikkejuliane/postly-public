@@ -3,52 +3,104 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Create Post</title>
+        <title>Create post | Postly</title>
+        <meta name="description" content="Share your story on Postly. Create and publish engaging posts to connect with your community.">
+        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
         <script type="module" src="/src/app.js"></script>
     </head>
-    <body>
-        <h1>Create Post</h1>
-        <a class="nav-style" href="/">Home</a>
-        <form id="create-post" name="createPost">
-            <label for="title">Title:</label>
-            <input
-                type="text"
-                id="title"
-                name="title"
-                placeholder="Enter the post title"
-                required
-                maxlength="60"
-            >
-            <label for="body">Body:</label>
-            <textarea
-                id="post-body"
-                name="body"
-                placeholder="Write your post content here"
-                required
-                maxlength="1000"
-            ></textarea>
-            <label for="image">Image URL:</label>
-            <input
-                type="url"
-                id="image"
-                name="media"
-                placeholder="Enter media URL (optional)"
-            >
-            <label for="image-alt">Image Alt Text:</label>
-            <input
-                type="text"
-                id="image-alt"
-                name="alt"
-                placeholder="Describe the media (optional)"
-            >
-            <label for="tags">Tags:</label>
-            <input
-                type="text"
-                id="tags"
-                name="tags"
-                placeholder="Enter tags, separated by commas (optional)"
-            >
-            <button type="submit" class="create-post-btn">Create Post</button>
-        </form>
+    <body class="bg-creamwhite max-w-[1440px] mx-auto">
+        <header class="p-5 flex flex-row justify-between items-center">
+            <div>
+                <a href="/">
+                    <img
+                        src="/public/images/postly2.png"
+                        alt="logo"
+                        class="h-12"
+                        width="auto"
+                        height="48"
+                    >
+                </a>
+            </div>
+            <div class="flex justify-center items-center gap-8 font-redHat font-medium text-base cursonr-pointer ">
+                <a class="hover:font-bold hover:text-darkgreen transition duration-100" href="/">Home</a>
+                <a class="hover:font-bold hover:text-darkgreen transition duration-100" href="/profile/">My Profile</a>
+                <button id="logout-btn">
+                    <svg
+                        class="hover:font-bold hover:text-darkgreen transition duration-100"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 24 24"
+                    >
+                        <path fill="currentColor" d="M5.616 20q-.691 0-1.153-.462T4 18.384V5.616q0-.691.463-1.153T5.616 4h6.403v1H5.616q-.231 0-.424.192T5 5.616v12.769q0 .23.192.423t.423.192h6.404v1zm10.846-4.461l-.702-.72l2.319-2.319H9.192v-1h8.887l-2.32-2.32l.702-.718L20 12z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <main>
+            <div class="flex flex-col gap-4 sm:mb-0 mb-4">
+                <a class="self-start flex items-center justify-center ml-6 w-10 h-10 text-darkgreen text-2xl bg-white font-bold rounded-full shadow-md cursor-pointer" href="/profile/">&#8592;</a>
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                <h1 class="text-2xl font-bold font-redHat">Create Post</h1>
+                <form id="create-post" name="createPost" class="flex flex-col justify-center font-montserrat text-sm w-[365px] sm:w-[500px]">
+                    <label class="pt-2 pb-1 font-bold" for="title">Title:</label>
+                    <input
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Enter the post title"
+                        required
+                        maxlength="60"
+                    >
+                    <label class="pt-2 pb-1 font-bold" for="body">Body:</label>
+                    <textarea
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        id="post-body"
+                        name="body"
+                        placeholder="Write your post content here"
+                        required
+                        maxlength="1000"
+                    ></textarea>
+                    <label class="pt-2 pb-1 font-bold" for="image">Image URL:</label>
+                    <input
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        type="url"
+                        id="image"
+                        name="media"
+                        placeholder="Enter media URL (optional)"
+                    >
+                    <label class="pt-2 pb-1 font-bold" for="image-alt">Image Alt Text:</label>
+                    <input
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        type="text"
+                        id="image-alt"
+                        name="alt"
+                        placeholder="Describe the media (optional)"
+                    >
+                    <label class="pt-2 pb-1 font-bold" for="tags">Tags:</label>
+                    <input
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        type="text"
+                        id="tags"
+                        name="tags"
+                        placeholder="Enter tags, separated by commas (optional)"
+                    >
+                    <button type="submit" class="create-post-btn font-redHat font-semibold text-base text-darkgreen cursor-pointer p-2">Create Post</button>
+                </form>
+            </div>
+            <div id="modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 items-center justify-center">
+                <div class="bg-white rounded-lg w-11/12 max-w-md p-6 shadow-lg relative">
+                    <h3 id="modal-title" class="text-lg font-bold mb-4 text-center"></h3>
+                    <div id="modal-content" class="mb-4 text-sm text-gray-600 text-center"></div>
+                    <div class="flex justify-center gap-4">
+                        <button id="modal-confirm" class="bg-darkgreen text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700">Yes</button>
+                        <button id="modal-cancel" class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 hidden">No</button>
+                    </div>
+                    <button id="modal-close" class="absolute top-3 right-3 text-gray-500 text-xl font-bold hover:text-black">&times;</button>
+                </div>
+            </div>
+        </main>
     </body>
 </html>

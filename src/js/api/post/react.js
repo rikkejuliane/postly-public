@@ -42,10 +42,12 @@ export function initializeReactionButtons() {
       const reactionButton = event.target;
       const postId = reactionButton.dataset.postId;
       const symbol = reactionButton.dataset.symbol || "❤️";
+
       if (!postId) {
         return;
       }
       reactionButton.disabled = true;
+
       try {
         const updatedReactions = await toggleReaction(postId, symbol);
         const userReaction = updatedReactions.find(
@@ -57,6 +59,7 @@ export function initializeReactionButtons() {
         );
         reactionButton.textContent = `${symbol} ${reactionCount}`;
         reactionButton.classList.toggle("reacted", userHasReacted);
+
       } catch (error) {
         console.error("Error toggling reaction:", error);
         alert("Error toggling reaction. Please try again.");

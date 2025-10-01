@@ -27,19 +27,51 @@ export async function loadPosts(container, fetchFunction, dropdown, options = {}
   let currentTag = options.tag || "all";
   let searchQuery = options.searchQuery || null;
 
+  const noMorePostsMessage = document.createElement("p");
+  noMorePostsMessage.textContent = "Nothing more to load.";
+  noMorePostsMessage.classList.add("text-gray-500", "font-semibold", "mb-4", "hidden");
+
+  const loadMoreButton = document.querySelector(".load-more-btn") || document.createElement("button");
+  loadMoreButton.textContent = "Load More";
+  loadMoreButton.classList.add(
+    "text-darkgreen",
+    "font-bold",
+    "py-2",
+    "px-4",
+    "mb-5",
+    "rounded-lg",
+    "shadow-md",
+    "hover:bg-white",
+    "cursor-pointer",
+    "transition",
+    "duration-200"
+  );
+
+  if (!container.nextElementSibling?.classList.contains("load-more-btn")) {
+    container.insertAdjacentElement("afterend", noMorePostsMessage);
+    container.insertAdjacentElement("afterend", loadMoreButton);
+  }
+
   async function fetchAndRender() {
     try {
       const tagToFetch = currentTag === "all" ? null : currentTag;
       const result = await fetchFunction(limit, currentPage, tagToFetch, options.username, searchQuery);
       const posts = Array.isArray(result.data) ? result.data : [result.data];
+
       if (!posts || posts.length === 0) {
         if (currentPage === 1) {
           container.innerHTML = "<p>No posts available yet.</p>";
+        } else {
+          noMorePostsMessage.classList.remove("hidden");
+          loadMoreButton.classList.add("hidden");
         }
         return;
       }
+
       renderPosts(container, posts);
       currentPage++;
+      noMorePostsMessage.classList.add("hidden");
+      loadMoreButton.classList.remove("hidden");
     } catch (error) {
       console.error("Error loading posts:", error);
       if (currentPage === 1) {
@@ -48,22 +80,20 @@ export async function loadPosts(container, fetchFunction, dropdown, options = {}
     }
   }
 
-  const loadMoreButton = document.querySelector(".load-more-btn") || document.createElement("button");
-  loadMoreButton.textContent = "Load More";
-  loadMoreButton.classList.add("load-more-btn");
   loadMoreButton.removeEventListener("click", fetchAndRender);
   loadMoreButton.addEventListener("click", fetchAndRender);
-  if (!container.nextElementSibling?.classList.contains("load-more-btn")) {
-    container.insertAdjacentElement("afterend", loadMoreButton);
-  }
+
   if (dropdown) {
     dropdown.addEventListener("change", (event) => {
       currentTag = event.target.value;
       currentPage = 1;
       searchQuery = null;
       container.innerHTML = "";
+      noMorePostsMessage.classList.add("hidden");
+      loadMoreButton.classList.remove("hidden");
       fetchAndRender();
     });
   }
+
   await fetchAndRender();
 }

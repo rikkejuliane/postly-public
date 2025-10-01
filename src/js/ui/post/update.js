@@ -1,4 +1,5 @@
 import { updatePost } from "../../api/post/update.js";
+import { openModal } from "../../ui/global/modalMessage.js";
 /**
  * Handles the submission of the edit post form.
  *
@@ -16,9 +17,6 @@ import { updatePost } from "../../api/post/update.js";
  */
 export async function onUpdatePost(event) {
   event.preventDefault();
-  if (!confirm("Confirm post update?")) {
-    return;
-  }
   const form = event.target;
   const formData = new FormData(form);
   const postId = new URLSearchParams(window.location.search).get("id");
@@ -29,23 +27,45 @@ export async function onUpdatePost(event) {
     body: formData.get("body"),
     tags: formData.get("tags")
       ? formData
-          .get("tags")
-          .split(",")
-          .map((tag) => tag.trim())
+        .get("tags")
+        .split(",")
+        .map((tag) => tag.trim())
       : [],
     media: mediaUrl
       ? {
-          url: mediaUrl,
-          alt: mediaAlt,
-        }
+        url: mediaUrl,
+        alt: mediaAlt,
+      }
       : null,
   };
-  try {
-    const result = await updatePost(postId, post);
-    if (result) {
-      window.location.href = `/post/?id=${postId}`;
-    }
-  } catch (error) {
-    console.error("Error updating post:", error);
-  }
+
+  openModal({
+    title: "Confirm Update",
+    content: "Are you sure you want to update this post?",
+    confirmText: "Yes",
+    cancelText: "No",
+    onConfirm: async () => {
+      try {
+        const result = await updatePost(postId, post);
+        if (result) {
+          openModal({
+            title: "Post Updated",
+            content: "Your post has been updated successfully.",
+            confirmText: "OK",
+            onConfirm: () => {
+              const previousPage = document.referrer || "/";
+              window.location.href = previousPage;
+            },
+          });
+        }
+      } catch (error) {
+        console.error("Error updating post:", error);
+        openModal({
+          title: "Error",
+          content: `Failed to update post: ${error.message}`,
+          confirmText: "OK",
+        });
+      }
+    },
+  });
 }

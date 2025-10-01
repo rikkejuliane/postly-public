@@ -17,13 +17,11 @@ export async function deletePost(id) {
   };
   try {
     const response = await fetch(`${API_SOCIAL_POSTS}/${id}`, options);
-
     if (response.status === 204) {
       return;
     }
     if (!response.ok) {
       const data = await response.json();
-
       throw new Error(data.message || "Failed to delete post");
     }
     return response.json();

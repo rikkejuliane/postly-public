@@ -18,5 +18,8 @@ export default defineConfig({
         createPost: resolve(__dirname, "./post/create/index.html"),
       },
     },
+    server: {
+      hmr: true, // Ensure HMR is enabled
+    },
   },
 });

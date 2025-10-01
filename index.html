@@ -3,40 +3,104 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Noroff FED2 JS2 CA</title>
+        <title>Home Feed | Postly</title>
+        <meta name="description" content="Explore the latest posts from your Postly community. Discover, engage, and connect through shared stories and moments.">
+        <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
         <script type="module" src="/src/app.js"></script>
     </head>
-    <body>
-        <h1>HOME</h1>
-        <section class="nav-container">
-            <div class="navbar">
-                <a class="nav-style" href="/profile/">My Profile</a>
-                <a class="nav-style" href="/post/create/">Create Post</a>
-                <a class="nav-style" href="/auth/login/">Login</a>
-                <a class="nav-style" href="/auth/register/">Register</a>
-                <button class="nav-style" id="logout-btn">Logout</button>
-            </div>
-        </section>
-        <section class="feed-controls">
-          <div>
-            <label for="search-input" class="seach-label">Search:</label>
-            <input
-                type="text"
-                id="search-input"
-                placeholder="Search posts by title..."
-                class="search-bar"
-            >
-        </div>
+    <body class="bg-creamwhite max-w-[1440px] mx-auto">
+        <header class="p-5 flex flex-row justify-between items-center">
             <div>
-                <label for="tag-filter" class="label-filter">Choose community:</label>
-                <select id="tag-filter">
-                    <option value="all" selected>General</option>
-                    <option value="PetPals">PetPals</option>
-                </select>
+                <a href="/">
+                    <img
+                        src="/public/images/postly2.png"
+                        alt="logo"
+                        class="h-12"
+                        width="auto"
+                        height="48"
+                    >
+                </a>
             </div>
-        </section>
-        <section class="feed-wrapper">
-            <div id="feed-container"></div>
-        </section>
+            <nav class="flex justify-center items-center gap-8 font-redHat font-medium text-base cursonr-pointer ">
+                <a class="hover:font-bold hover:text-darkgreen transition duration-100" href="/profile/">My Profile</a>
+                <a class="hover:font-bold hover:text-darkgreen transition duration-100" href="/post/create/">Create Post</a>
+                <button id="logout-btn">
+                    <svg
+                        class="hover:font-bold hover:text-darkgreen transition duration-100"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        viewBox="0 0 24 24"
+                    >
+                        <path fill="currentColor" d="M5.616 20q-.691 0-1.153-.462T4 18.384V5.616q0-.691.463-1.153T5.616 4h6.403v1H5.616q-.231 0-.424.192T5 5.616v12.769q0 .23.192.423t.423.192h6.404v1zm10.846-4.461l-.702-.72l2.319-2.319H9.192v-1h8.887l-2.32-2.32l.702-.718L20 12z"/>
+                    </svg>
+                </button>
+            </nav>
+        </header>
+        <main>
+            <h1 class="sr-only">POSTLY SOCIAL MEDIA APP</h1>
+            <section class="flex flex-col justify-center items-center gap-4 mt-10 mb-2 sm:flex-row sm:gap-6">
+                <div class="font-montserrat text-sm">
+                    <label for="search-input" class="pt-2 pb-1 font-bold">Search:</label>
+                    <input
+                        class="px-3 py-1 rounded-lg text-gray-800"
+                        type="text"
+                        id="search-input"
+                        placeholder="Search posts by title..."
+                    >
+                </div>
+                <div class="font-montserrat text-sm">
+                    <label for="tag-filter" class="pt-2 pb-1 font-bold">Choose community:</label>
+                    <select id="tag-filter" class="px-3 py-1 rounded-lg text-gray-800">
+                        <option value="all" selected>General</option>
+                        <option value="PetPals">PetPals</option>
+                    </select>
+                </div>
+            </section>
+            <section class="flex flex-col justify-center items-center  mb-2">
+                <div id="feed-container"></div>
+            </section>
+            <div id="modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 items-center justify-center">
+                <div class="bg-white rounded-lg w-11/12 max-w-md p-6 shadow-lg relative">
+                    <h3 id="modal-title" class="text-lg font-bold mb-4 text-center"></h3>
+                    <div id="modal-content" class="mb-4 text-sm text-gray-600 text-center"></div>
+                    <div class="flex justify-center gap-4">
+                        <button id="modal-confirm" class="bg-darkgreen text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700">Yes</button>
+                        <button id="modal-cancel" class="bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 hidden">No</button>
+                    </div>
+                    <button id="modal-close" class="absolute top-3 right-3 text-gray-500 text-xl font-bold hover:text-black">&times;</button>
+                </div>
+            </div>
+        </main>
+        <footer class="flex flex-col justify-center items-center gap-1 p-5 text-sm text-gray-600 font-montserrat">
+            <p>© 2025 All rights reserved.</p>
+            <p>
+                Built by
+                <a
+                    class="font-bold cursor-pointer"
+                    href="https://github.com/rikkejuliane"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Rikke Juliane</a>
+                &
+                <a
+                    class="font-semibold cursor-pointer"
+                    href="https://github.com/Niksubishi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Nikolas Bishop</a>
+                .
+            </p>
+            <p>
+                Design by
+                <a
+                    class="font-bold cursor-pointer"
+                    href="https://github.com/rikkejuliane"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Rikke Juliane</a>
+                .
+            </p>
+        </footer>
     </body>
 </html>
